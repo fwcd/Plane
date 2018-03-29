@@ -9,13 +9,13 @@
 
 #include <string>
 
-#include "../core/IScreen.hpp"
 #include "../math/Vec2.hpp"
+#include "../utils/Color.hpp"
 #include "BaseWidget.hpp"
 
 namespace plane {
 
-class Label : BaseWidget {
+class Label : public BaseWidget {
 public:
 	Label(std::string text) {
 		this->text = text;
@@ -23,12 +23,23 @@ public:
 
 	virtual ~Label() {}
 
+	void setSize(float size) {
+		attribs.setSize(size);
+	}
+
+	void setColor(Color color) {
+		this->color = color;
+	}
+
 	virtual void paint(IScreen& screen) {
 		const Vec2<float>& pos = getPos();
-
+		screen.setColor(color);
+		screen.drawString(text, pos.getX(), pos.getY(), attribs);
 	}
 private:
 	std::string text;
+	Color color = COLOR_BLACK;
+	FontAttributes attribs = FontAttributes();
 };
 
 }

@@ -11,23 +11,32 @@
 #include <core/IPaintable.hpp>
 #include <core/IScreen.hpp>
 #include <core/KeyListener.hpp>
+#include <core/MouseButton.hpp>
+#include <core/MouseEvent.hpp>
 #include <core/MouseListener.hpp>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_events.h>
+#include <SDL2/SDL_mouse.h>
+#include <SDL2/SDL_pixels.h>
 #include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_render.h>
+#include <SDL2/SDL_surface.h>
 #include <SDL2/SDL_timer.h>
+#include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_video.h>
 #include <utils/Color.hpp>
 #include <algorithm>
 #include <cstdint>
+#include <functional>
 #include <iterator>
 #include <memory>
 #include <string>
 #include <vector>
-#include <iostream>
 
 #include "SDLException.hpp"
+
+using std::vector;
+using std::shared_ptr;
 
 namespace plane {
 
@@ -56,12 +65,18 @@ public:
 		}
 
 		surface = SDL_GetWindowSurface(window);
-		closed = false;
+		this->width = width;
+		this->height = height;
+
+		if (TTF_Init() < 0) {
+			throw SDLException("Error while initializing TTF engine");
+		}
 	}
 
 	virtual ~SDLScreen() {
 		SDL_DestroyRenderer(renderer);
 		SDL_DestroyWindow(window);
+		TTF_Quit();
 		SDL_Quit();
 	}
 
@@ -86,27 +101,42 @@ public:
 	}
 
 	virtual void drawString(std::string str, float x, float y, FontAttributes attribs) {
-		// TODO
+		TTF_Font* font = TTF_OpenFont("resources/arial.ttf", attribs.getSize());
+		if (font == 0) {
+			throw SDLException("Font not found.");
+		}
+		SDL_Color textColor = getSDLColor();
+		SDL_Surface* textSurface = TTF_RenderText_Solid(font, str.c_str(), textColor);
+		SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, textSurface);
+		int textWidth = textSurface->w;
+		int textHeight = textSurface->h;
+		SDL_Rect bounds = {(int) x, (int) y, textWidth, textHeight};
+
+		SDL_RenderCopy(renderer, texture, 0, &bounds);
+
+		SDL_DestroyTexture(texture);
+		SDL_FreeSurface(textSurface);
+		TTF_CloseFont(font);
 	}
 
 	virtual void drawLine(float startX, float startY, float endX, float endY) {
 		// TODO
 	}
 
-	virtual void addKeyListener(KeyListener keyListener) {
-		// TODO
+	virtual void addKeyListener(shared_ptr<KeyListener> keyListener) {
+		keyListeners.push_back(keyListener);
 	}
 
-	virtual void addMouseListener(MouseListener mouseListener) {
-		// TODO
+	virtual void addMouseListener(shared_ptr<MouseListener> mouseListener) {
+		mouseListeners.push_back(mouseListener);
 	}
 
-	virtual void removeKeyListener(KeyListener keyListener) {
-		// TODO
+	virtual void removeKeyListener(shared_ptr<KeyListener> keyListener) {
+		keyListeners.erase(std::remove(keyListeners.begin(), keyListeners.end(), keyListener), keyListeners.end());
 	}
 
-	virtual void removeMouseListener(MouseListener mouseListener) {
-		// TODO
+	virtual void removeMouseListener(shared_ptr<MouseListener> mouseListener) {
+		mouseListeners.erase(std::remove(mouseListeners.begin(), mouseListeners.end(), mouseListener), mouseListeners.end());
 	}
 
 	virtual void setColor(Color color) {
@@ -122,12 +152,20 @@ public:
 		return Color(r, g, b, a);
 	}
 
-	virtual void add(std::shared_ptr<IPaintable> paintable) {
+	virtual void add(shared_ptr<IPaintable> paintable) {
 		paintables.push_back(paintable);
 	}
 
-	virtual void remove(std::shared_ptr<IPaintable> paintable) {
+	virtual void remove(shared_ptr<IPaintable> paintable) {
 		paintables.erase(std::remove(paintables.begin(), paintables.end(), paintable), paintables.end());
+	}
+
+	virtual float getWidth() {
+		return width;
+	}
+
+	virtual float getHeight() {
+		return height;
 	}
 
 	void runMainloop(long intervalMs) {
@@ -137,13 +175,32 @@ public:
 			while (SDL_PollEvent(&event) != 0) {
 				if (event.type == SDL_QUIT) {
 					closed = true;
+				} else if (isSDLMouseEvent(event)) {
+					MouseEvent e = mouseEventOf(event);
+					switch (event.type) {
+					case SDL_MOUSEBUTTONDOWN:
+						withMouseListeners([e](MouseListener& listener) {listener.fireClick(e);});
+						mouseDown = true;
+						break;
+					case SDL_MOUSEMOTION:
+						if (mouseDown) {
+							withMouseListeners([e](MouseListener& listener) {listener.fireDrag(e);});
+						} else {
+							withMouseListeners([e](MouseListener& listener) {listener.fireMove(e);});
+						}
+						break;
+					case SDL_MOUSEBUTTONUP:
+						withMouseListeners([e](MouseListener& listener) {listener.fireRelease(e);});
+						mouseDown = false;
+						break;
+					}
 				}
 			}
 
 			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0xFF);
 			SDL_RenderClear(renderer);
 
-			for (std::shared_ptr<IPaintable> paintable : paintables) {
+			for (shared_ptr<IPaintable> paintable : paintables) {
 				paintable->paint(*this);
 			}
 
@@ -155,8 +212,70 @@ private:
 	SDL_Window* window;
 	SDL_Surface* surface;
 	SDL_Renderer* renderer;
-	std::vector<std::shared_ptr<IPaintable>> paintables;
-	bool closed;
+	vector<shared_ptr<MouseListener>> mouseListeners = vector<shared_ptr<MouseListener>>();
+	vector<shared_ptr<KeyListener>> keyListeners = vector<shared_ptr<KeyListener>>();
+	vector<shared_ptr<IPaintable>> paintables = vector<shared_ptr<IPaintable>>();
+	bool closed = false;
+	bool mouseDown = false;
+	int width;
+	int height;
+	float lastMouseX = -1;
+	float lastMouseY = -1;
+
+	SDL_Color getSDLColor() {
+		SDL_Color color;
+		SDL_GetRenderDrawColor(renderer, &color.r, &color.g, &color.b, &color.a);
+		return color;
+	}
+
+	MouseButton toMouseButton(uint8_t sdlButton) {
+		switch (sdlButton) {
+		case SDL_BUTTON_LEFT:
+			return MouseButton::MOUSE_LEFT;
+		case SDL_BUTTON_RIGHT:
+			return MouseButton::MOUSE_RIGHT;
+		case SDL_BUTTON_MIDDLE:
+			return MouseButton::MOUSE_MIDDLE;
+		default:
+			return MouseButton::MOUSE_INVALID;
+		}
+	}
+
+	bool isSDLMouseEvent(const SDL_Event& event) {
+		uint32_t t = event.type;
+		return t == SDL_MOUSEBUTTONDOWN
+				|| t == SDL_MOUSEBUTTONUP
+				|| t == SDL_MOUSEMOTION
+				|| t == SDL_MOUSEWHEEL
+				|| t == SDL_MOUSEWHEEL_FLIPPED
+				|| t == SDL_MOUSEWHEEL_NORMAL;
+	}
+
+	MouseEvent mouseEventOf(const SDL_Event& event) {
+		const int x = event.motion.x;
+		const int y = event.motion.y;
+
+		// TODO: Handle touch events
+		MouseEvent e = MouseEvent(lastMouseX, lastMouseY, x, y);
+		e.setButton(toMouseButton(event.button.button));
+		e.setClicks(event.button.clicks);
+
+		lastMouseX = x;
+		lastMouseY = y;
+		return e;
+	}
+
+	void withMouseListeners(std::function<void(MouseListener&)> notifier) {
+		for (shared_ptr<MouseListener> listener : mouseListeners) {
+			notifier(*listener);
+		}
+	}
+
+	void withKeyListeners(std::function<void(KeyListener&)> notifier) {
+		for (shared_ptr<KeyListener> listener : keyListeners) {
+			notifier(*listener);
+		}
+	}
 };
 
 }

@@ -15,7 +15,7 @@
 
 namespace plane {
 
-class IWidget : IPaintable {
+class IWidget : public IPaintable {
 public:
 	virtual ~IWidget() {}
 

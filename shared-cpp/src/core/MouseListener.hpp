@@ -21,26 +21,42 @@ class MouseListener {
 public:
 	virtual ~MouseListener() {}
 
-	void setClickHandler(std::function<void(MouseEvent)> handler) { clickHandler = handler; }
+	void setClickHandler(std::function<void(const MouseEvent&)> handler) { clickHandler = handler; }
 
-	void setReleaseHandler(std::function<void(MouseEvent)> handler) { releaseHandler = handler; }
+	void setReleaseHandler(std::function<void(const MouseEvent&)> handler) { releaseHandler = handler; }
 
-	void setDragHandler(std::function<void(MouseEvent)> handler) { dragHandler = handler; }
+	void setDragHandler(std::function<void(const MouseEvent&)> handler) { dragHandler = handler; }
 
-	void setMoveHandler(std::function<void(MouseEvent)> handler) { moveHandler = handler; }
+	void setMoveHandler(std::function<void(const MouseEvent&)> handler) { moveHandler = handler; }
 
-	void fireClick(MouseEvent event) { clickHandler(event); }
+	void fireClick(const MouseEvent& event) {
+		if (clickHandler) {
+			clickHandler(event);
+		}
+	}
 
-	void fireRelease(MouseEvent event) { releaseHandler(event); }
+	void fireRelease(const MouseEvent& event) {
+		if (releaseHandler) {
+			releaseHandler(event);
+		}
+	}
 
-	void fireDrag(MouseEvent event) { dragHandler(event); }
+	void fireDrag(const MouseEvent& event) {
+		if (dragHandler) {
+			dragHandler(event);
+		}
+	}
 
-	void fireMove(MouseEvent event) { moveHandler(event); }
+	void fireMove(const MouseEvent& event) {
+		if (moveHandler) {
+			moveHandler(event);
+		}
+	}
 private:
-	std::function<void(MouseEvent)> clickHandler;
-	std::function<void(MouseEvent)> releaseHandler;
-	std::function<void(MouseEvent)> dragHandler;
-	std::function<void(MouseEvent)> moveHandler;
+	std::function<void(const MouseEvent&)> clickHandler;
+	std::function<void(const MouseEvent&)> releaseHandler;
+	std::function<void(const MouseEvent&)> dragHandler;
+	std::function<void(const MouseEvent&)> moveHandler;
 };
 
 }

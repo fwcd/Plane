@@ -31,6 +31,10 @@ public:
 
 	virtual Color getColor() = 0;
 
+	virtual float getWidth() = 0;
+
+	virtual float getHeight() = 0;
+
 	virtual void drawRect(float x, float y, float w, float h) = 0;
 
 	virtual void fillRect(float x, float y, float w, float h) = 0;
@@ -47,13 +51,13 @@ public:
 
 	virtual void remove(std::shared_ptr<IPaintable> paintable) = 0;
 
-	virtual void addKeyListener(KeyListener keyListener) = 0;
+	virtual void addKeyListener(std::shared_ptr<KeyListener> keyListener) = 0;
 
-	virtual void addMouseListener(MouseListener mouseListener) = 0;
+	virtual void addMouseListener(std::shared_ptr<MouseListener> mouseListener) = 0;
 
-	virtual void removeKeyListener(KeyListener keyListener) = 0;
+	virtual void removeKeyListener(std::shared_ptr<KeyListener> keyListener) = 0;
 
-	virtual void removeMouseListener(MouseListener mouseListener) = 0;
+	virtual void removeMouseListener(std::shared_ptr<MouseListener> mouseListener) = 0;
 };
 
 }

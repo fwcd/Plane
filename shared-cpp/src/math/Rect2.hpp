@@ -15,7 +15,7 @@
 namespace plane {
 
 /**
- * Immutable, two-dimensional rectangle.
+ * Mutable, two-dimensional rectangle.
  */
 template <typename T> class Rect2 : public IPaintable {
 public:
@@ -47,30 +47,52 @@ public:
 
 	Vec2<T> getSize() { return size; }
 
-	Rect2<T> movedBy(const Vec2<T>& delta) {
-		return Rect2<T>(topLeft.add(delta), size);
+	bool contains(const Vec2<T>& pos) {
+		Vec2<T> bottomRight = getBottomRight();
+		return pos.getX() > topLeft.getX()
+				&& pos.getX() < bottomRight.getX()
+				&& pos.getY() > topLeft.getY()
+				&& pos.getY() < bottomRight.getY();
 	}
 
-	Rect2<T> withTopLeft(const Vec2<T>& newTopLeft) {
-		return Rect2<T>(newTopLeft, size);
+	void moveBy(const Vec2<T>& delta) {
+		topLeft = topLeft.add(delta);
 	}
 
-	void setColor(Color color) { this->color = color; }
+	void setTopLeft(Vec2<T> newTopLeft) {
+		topLeft = newTopLeft;
+	}
+
+	void setColor(Color color) {this->color = color; }
 
 	Color getColor() { return color; }
+
+	void setFilled(bool filled) { this->filled = filled; }
+
+	bool isFilled() { return filled; }
 
 	T getWidth() { return size.getX(); }
 
 	T getHeight() { return size.getY(); }
 
 	virtual void paint(IScreen& screen) {
+		float x = (float) topLeft.getX();
+		float y = (float) topLeft.getY();
+		float w = (float) getWidth();
+		float h = (float) getHeight();
+
 		screen.setColor(color);
-		screen.drawRect((float) topLeft.getX(), (float) topLeft.getY(), (float) getWidth(), (float) getHeight());
+		if (filled) {
+			screen.fillRect(x, y, w, h);
+		} else {
+			screen.drawRect(x, y, w, h);
+		}
 	}
 private:
 	Vec2<T> topLeft;
 	Vec2<T> size;
-	Color color;
+	Color color = COLOR_BLACK;
+	bool filled = true;
 };
 
 }

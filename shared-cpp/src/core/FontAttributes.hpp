@@ -34,6 +34,8 @@ public:
 
 	virtual ~FontAttributes() {}
 
+	void setSize(float size) { this->size = size; }
+
 	float getSize() { return size; }
 
 	bool isBold() { return bold; }

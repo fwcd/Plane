@@ -14,7 +14,7 @@
 
 namespace plane {
 
-class BaseWidget : IWidget {
+class BaseWidget : public IWidget {
 public:
 	virtual ~BaseWidget() {}
 
@@ -23,11 +23,11 @@ public:
 	}
 
 	virtual void moveBy(const Vec2<float>& delta) {
-		boundingBox = boundingBox.movedBy(delta);
+		boundingBox.moveBy(delta);
 	}
 
 	virtual void setPos(Vec2<float> pos) {
-		boundingBox = boundingBox.withTopLeft(pos);
+		boundingBox.setTopLeft(pos);
 	}
 
 	virtual Vec2<float> getPos() {

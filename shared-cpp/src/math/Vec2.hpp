@@ -33,22 +33,22 @@ public:
 
 	virtual ~Vec2() {}
 
-	Vec2 add(const Vec2& other) { return Vec2(x + other.x, y + other.y); }
+	Vec2 add(const Vec2& other) const { return Vec2(x + other.x, y + other.y); }
 
-	Vec2 sub(const Vec2& other) { return Vec2(x - other.x, y - other.y); }
+	Vec2 sub(const Vec2& other) const { return Vec2(x - other.x, y - other.y); }
 
-	Vec2 scale(double factor) { return Vec2(x * factor, y * factor); }
+	Vec2 scale(double factor) const { return Vec2(x * factor, y * factor); }
 
-	Vec2 normalize() {
+	Vec2 normalize() const {
 		double len = length();
 		return Vec2(x / len, y / len);
 	}
 
-	double length() { return std::sqrt((x * x) + (y * y)); }
+	double length() const { return std::sqrt((x * x) + (y * y)); }
 
-	T getX() { return x; }
+	T getX() const { return x; }
 
-	T getY() { return y; }
+	T getY() const { return y; }
 private:
 	T x;
 	T y;

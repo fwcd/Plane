@@ -17,16 +17,24 @@ class KeyListener {
 public:
 	virtual ~KeyListener() {}
 
-	void setPressHandler(std::function<void(KeyEvent)> handler) { pressHandler = handler; }
+	void setPressHandler(std::function<void(const KeyEvent&)> handler) { pressHandler = handler; }
 
-	void setReleaseHandler(std::function<void(KeyEvent)> handler) { releaseHandler = handler; }
+	void setReleaseHandler(std::function<void(const KeyEvent&)> handler) { releaseHandler = handler; }
 
-	void firePress(KeyEvent event) { pressHandler(event); }
+	void firePress(const KeyEvent& event) {
+		if (pressHandler) {
+			pressHandler(event);
+		}
+	}
 
-	void fireRelease(KeyEvent event) { releaseHandler(event); }
+	void fireRelease(const KeyEvent& event) {
+		if (releaseHandler) {
+			releaseHandler(event);
+		}
+	}
 private:
-	std::function<void(KeyEvent)> pressHandler;
-	std::function<void(KeyEvent)> releaseHandler;
+	std::function<void(const KeyEvent&)> pressHandler;
+	std::function<void(const KeyEvent&)> releaseHandler;
 };
 
 }
