@@ -7,8 +7,9 @@
 #ifndef SRC_MATH_RECT2_HPP_
 #define SRC_MATH_RECT2_HPP_
 
-#include "../core/IScreen.hpp"
 #include "../core/IPaintable.hpp"
+#include "../core/IScreen.hpp"
+#include "../utils/Color.hpp"
 #include "Vec2.hpp"
 
 namespace plane {
@@ -54,16 +55,22 @@ public:
 		return Rect2<T>(newTopLeft, size);
 	}
 
+	void setColor(Color color) { this->color = color; }
+
+	Color getColor() { return color; }
+
 	T getWidth() { return size.getX(); }
 
 	T getHeight() { return size.getY(); }
 
 	virtual void paint(IScreen& screen) {
+		screen.setColor(color);
 		screen.drawRect((float) topLeft.getX(), (float) topLeft.getY(), (float) getWidth(), (float) getHeight());
 	}
 private:
 	Vec2<T> topLeft;
 	Vec2<T> size;
+	Color color;
 };
 
 }

@@ -20,11 +20,13 @@ public:
 	MouseEvent(float x, float y, MouseButton button) {
 		positions = std::vector<Vec2<float>>({Vec2<float>(x, y)});
 		this->button = button;
+		clicks = 1;
 	}
 
-	MouseEvent(std::initializer_list<Vec2<float>> positions, MouseButton button) {
+	MouseEvent(std::initializer_list<Vec2<float>> positions, MouseButton button, int clicks) {
 		this->positions = std::vector<Vec2<float>>(positions);
 		this->button = button;
+		this->clicks = 1;
 	}
 
 	virtual ~MouseEvent() {}
@@ -39,6 +41,7 @@ public:
 private:
 	std::vector<Vec2<float>> positions; // Multiple positions can be stored (e.g. if multi-touch is used)
 	MouseButton button;
+	int clicks;
 };
 
 }

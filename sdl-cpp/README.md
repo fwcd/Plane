@@ -1,5 +1,5 @@
 # SDL implementation
-Contains a reference implementation of the Plane API using SDL.
+Contains a reference implementation of the Plane API using Simple DirectMedia Layer.
 
 ## Dependencies
 * ../shared-cpp/src/api (include)

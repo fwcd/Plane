@@ -7,11 +7,17 @@
 #ifndef SRC_API_ISCREEN_HPP_
 #define SRC_API_ISCREEN_HPP_
 
+#include <memory>
 #include <string>
 
 #include "FontAttributes.hpp"
-#include "KeyListener.hpp"
-#include "MouseListener.hpp"
+
+namespace plane {
+class Color;
+class IPaintable;
+class KeyListener;
+class MouseListener;
+} /* namespace plane */
 
 namespace plane {
 
@@ -20,6 +26,10 @@ public:
 	virtual ~IScreen() {}
 
 	virtual void repaintSoon() = 0;
+
+	virtual void setColor(Color color) = 0;
+
+	virtual Color getColor() = 0;
 
 	virtual void drawRect(float x, float y, float w, float h) = 0;
 
@@ -32,6 +42,10 @@ public:
 	virtual void drawString(std::string str, float x, float y, FontAttributes attribs) = 0;
 
 	virtual void drawLine(float startX, float startY, float endX, float endY) = 0;
+
+	virtual void add(std::shared_ptr<IPaintable> paintable) = 0;
+
+	virtual void remove(std::shared_ptr<IPaintable> paintable) = 0;
 
 	virtual void addKeyListener(KeyListener keyListener) = 0;
 
