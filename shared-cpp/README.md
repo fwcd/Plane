@@ -1,6 +1,8 @@
 # Shared C++ sources
 Contains the entire (header-only) shared library including the API.
 
+Note that this library is still in an early stage of development.
+
 ## Dependencies
 * C++11 or newer
 
