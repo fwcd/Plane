@@ -15,6 +15,7 @@
 #include "../core/IScreen.hpp"
 #include "../math/Rect2.hpp"
 #include "../math/Vec2.hpp"
+#include "../utils/Logger.hpp"
 #include "../utils/PlaneException.hpp"
 #include "BoxLayout.hpp"
 #include "IContainer.hpp"
@@ -28,6 +29,13 @@ namespace plane {
  */
 class GUI : public IPaintable, public IContainer {
 public:
+	/**
+	 * Creates a new GUI.
+	 *
+	 * DO NOT ALLOCATE THIS ON THE STACK BECAUSE THE
+	 * THIS POINTER MIGHT GET PASSED AROUND AS
+	 * A SHARED_PTR!!!
+	 */
 	GUI(std::shared_ptr<IScreen> screen) {
 		this->screen = screen;
 		setLayout(std::shared_ptr<ILayout>(new BoxLayout(HORIZONTAL_BOXLAYOUT)));
@@ -44,6 +52,7 @@ public:
 	}
 
 	virtual void relayout() {
+		LOG.trace("Now relayouting GUI...");
 		layout->relayout(*this);
 		screen->repaintSoon();
 	}
@@ -58,6 +67,7 @@ public:
 
 	virtual void add(std::shared_ptr<IWidget> widget, Vec2<float> pos) {
 		widget->setPos(pos);
+		widget->setGUI(std::shared_ptr<GUI>(this));
 		childs.push_back(widget);
 	}
 

@@ -44,14 +44,9 @@ int main(int argc, char* args[]) {
 
 	PTR(Label) label(new Label("Label", 24, *screen));
 	label->setColor(COLOR_WHITE);
-
 	PTR(ImageView) image(new ImageView("resources/demo.jpg"));
-
 	PTR(Button) button(new Button("Demo", 14, *screen));
-	std::cout << "Button Width: " << button->getBoundingBox().getWidth() << std::endl;
-
 	PTR(Button) button2(new Button("Demo", 18, *screen));
-	std::cout << "Button 2 Width: " << button2->getBoundingBox().getWidth() << std::endl;
 
 	PTR(GUI) gui(new GUI(screen));
 	gui->add(label);

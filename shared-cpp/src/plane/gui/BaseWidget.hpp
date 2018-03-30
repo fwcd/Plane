@@ -7,13 +7,13 @@
 #ifndef SRC_PLANE_GUI_BASEWIDGET_HPP_
 #define SRC_PLANE_GUI_BASEWIDGET_HPP_
 
-#include <iostream>
 #include <memory>
 
 #include "../core/KeyEvent.hpp"
 #include "../core/MouseEvent.hpp"
 #include "../math/Rect2.hpp"
 #include "../math/Vec2.hpp"
+#include "../utils/Logger.hpp"
 #include "GUI.hpp"
 #include "IWidget.hpp"
 
@@ -29,6 +29,7 @@ public:
 
 	virtual void setGUI(std::shared_ptr<GUI> ptr) {
 		gui = ptr;
+		LOG.trace("Received a new GUI, now relayouting...");
 		ptr->relayout();
 	}
 
@@ -78,10 +79,10 @@ protected:
 	 */
 	void relayout() {
 		if (gui != nullptr) {
-			std::cout << "notnull" << std::endl;
+			LOG.trace("Relayouting GUI from widget.");
 			gui->relayout();
 		} else {
-			std::cout << "isnull" << std::endl;
+			LOG.trace("Could not relayout GUI directly from widget.");
 		}
 	}
 private:

@@ -242,6 +242,7 @@ public:
 
 				SDL_RenderPresent(renderer);
 				needsRepaint = false;
+				LOG.deepTrace("Repainting screen");
 			}
 
 			SDL_Delay(intervalMs);
