@@ -19,8 +19,9 @@
 #define LEVEL_DEBUG -1
 #define LEVEL_TRACE -2
 #define LEVEL_DEEP_TRACE -3
+#define LEVEL_VERY_DEEP_TRACE -4
 
-#define CURRENT_LOG_LEVEL LEVEL_DEEP_TRACE
+#define CURRENT_LOG_LEVEL LEVEL_VERY_DEEP_TRACE
 
 namespace plane {
 
@@ -61,6 +62,12 @@ public:
 	void deepTrace(const char* msg) const {
 #if CURRENT_LOG_LEVEL <= LEVEL_DEEP_TRACE
 		log(msg, LEVEL_DEEP_TRACE);
+#endif
+	}
+
+	void veryDeepTrace(const char* msg) const {
+#if CURRENT_LOG_LEVEL <= LEVEL_VERY_DEEP_TRACE
+		log(msg, LEVEL_VERY_DEEP_TRACE);
 #endif
 	}
 private:

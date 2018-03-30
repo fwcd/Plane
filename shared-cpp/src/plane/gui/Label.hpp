@@ -29,6 +29,10 @@ public:
 		getBBReference() = Rect2<float>(0, 0, w, h);
 	}
 
+	Label(std::string text, float size, Color color, IScreen& screen) : Label(text, size, screen) {
+		setColor(color);
+	}
+
 	virtual ~Label() {}
 
 	void setColor(Color color) {

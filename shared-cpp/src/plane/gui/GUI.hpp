@@ -39,6 +39,7 @@ public:
 	GUI(std::shared_ptr<IScreen> screen) {
 		this->screen = screen;
 		setLayout(std::shared_ptr<ILayout>(new BoxLayout(HORIZONTAL_BOXLAYOUT)));
+		addInputHooks(screen);
 	}
 
 	virtual ~GUI() {}
@@ -91,6 +92,38 @@ private:
 	Rect2<float> bb = Rect2<float>();
 	std::vector<std::shared_ptr<IWidget>> childs = std::vector<std::shared_ptr<IWidget>>();
 	std::shared_ptr<ILayout> layout = std::shared_ptr<ILayout>();
+
+	void addInputHooks(const std::shared_ptr<IScreen>& screen) {
+		std::shared_ptr<MouseListener> mouseListener(new MouseListener());
+		mouseListener->setClickHandler([this](MouseEvent e) {
+			for (std::shared_ptr<IWidget> child : childs) {
+				child->onMouseClick(e);
+			}
+		});
+		mouseListener->setDragHandler([this](MouseEvent e) {
+			for (std::shared_ptr<IWidget> child : childs) {
+				child->onMouseDrag(e);
+			}
+		});
+		mouseListener->setReleaseHandler([this](MouseEvent e) {
+			for (std::shared_ptr<IWidget> child : childs) {
+				child->onMouseRelease(e);
+			}
+		});
+		std::shared_ptr<KeyListener> keyListener(new KeyListener());
+		keyListener->setPressHandler([this](KeyEvent e) {
+			for (std::shared_ptr<IWidget> child : childs) {
+				child->onKeyPress(e);
+			}
+		});
+		keyListener->setReleaseHandler([this](KeyEvent e) {
+			for (std::shared_ptr<IWidget> child : childs) {
+				child->onKeyRelease(e);
+			}
+		});
+		screen->addMouseListener(mouseListener);
+		screen->addKeyListener(keyListener);
+	}
 };
 
 }

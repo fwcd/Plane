@@ -29,9 +29,13 @@ public:
 	}
 
 	Button(std::string text, float size, IScreen& screen)
-			: Button(std::shared_ptr<IWidget>(new Label(text, size, screen))) {}
+			: Button(std::shared_ptr<IWidget>(new Label(text, size, COLOR_WHITE, screen))) {}
 
 	virtual ~Button() {}
+
+	void setClickTarget(std::function<void()> clickTarget) {
+		this->clickTarget = clickTarget;
+	}
 
 	void setBGColor(Color color) {
 		background = color;
@@ -51,20 +55,23 @@ public:
 
 	virtual void onMouseClick(MouseEvent e) {
 		if (getBBReference().contains(e.getPos())) {
+			LOG.deepTrace("Pressing button");
 			active = true;
 			background = activeBackground;
 		}
 	}
 
 	virtual void onMouseRelease(MouseEvent e) {
+		clickTarget();
 		active = false;
 		background = inactiveBackground;
 	}
 private:
 	Color inactiveBackground = COLOR_BLACK;
-	Color activeBackground = COLOR_TRANSLUCENT_BLACK;
+	Color activeBackground = COLOR_GRAY;
 	std::shared_ptr<IWidget> foreground;
-	Color background = COLOR_BLACK;
+	Color background = inactiveBackground;
+	std::function<void()> clickTarget = [] {};
 	bool active = false;
 };
 

@@ -22,7 +22,7 @@ using namespace plane;
 
 int main(int argc, char* args[]) {
 	std::shared_ptr<SDLScreen> screen(new SDLScreen("Test", 640, 480));
-	screen->setBackground(COLOR_GRAY);
+	screen->setBackground(Color(60, 60, 60));
 
 //	PTR(Rect2<float>) rect1(new Rect2<float>(10, 10, 50, 50));
 //	rect1->setColor(COLOR_MAGENTA);
