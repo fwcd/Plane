@@ -20,11 +20,21 @@ class IWidget;
 
 namespace plane {
 
+/**
+ * A box-bounded element that contains widgets.
+ */
 class IContainer : public IBoxBounded {
 public:
 	virtual ~IContainer() {}
 
 	virtual void setLayout(std::shared_ptr<ILayout> layout) = 0;
+
+	/**
+	 * Re-applies the layout to this component. Usually delegates
+	 * to the provided layout (thus shouldn't be called from an ILayout
+	 * implementor).
+	 */
+	virtual void relayout() = 0;
 
 	/**
 	 * Adds a widget. Usually delegates to the provided layout

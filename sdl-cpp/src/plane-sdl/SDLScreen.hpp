@@ -82,6 +82,14 @@ public:
 		SDL_Quit();
 	}
 
+	virtual void setBackground(Color color) {
+		background = color;
+	}
+
+	virtual Color getBackground() {
+		return background;
+	}
+
 	virtual void repaintSoon() {
 		needsRepaint = true;
 	}
@@ -225,7 +233,7 @@ public:
 			}
 
 			if (needsRepaint) {
-				SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0xFF);
+				setColor(background);
 				SDL_RenderClear(renderer);
 
 				for (shared_ptr<IPaintable> paintable : paintables) {
@@ -253,6 +261,7 @@ private:
 	int height;
 	float lastMouseX = -1;
 	float lastMouseY = -1;
+	Color background = COLOR_BLACK;
 
 	void drawImageImpl(std::string filePath, float x, float y, float& w, float& h) {
 		initSDLImage(filePath);

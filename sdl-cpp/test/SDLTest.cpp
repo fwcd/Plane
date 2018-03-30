@@ -4,12 +4,12 @@
  *  Created on: 28.03.2018
  */
 
-#include <plane/gui/BaseWidget.hpp>
 #include <plane/gui/GUI.hpp>
+#include <plane/gui/Button.hpp>
 #include <plane/gui/ImageView.hpp>
 #include <plane/gui/Label.hpp>
-#include <plane/math/Vec2.hpp>
 #include <plane/utils/Color.hpp>
+#include <plane/utils/Logger.hpp>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_main.h>
 #include <memory>
@@ -21,7 +21,8 @@
 using namespace plane;
 
 int main(int argc, char* args[]) {
-	SDLScreen screen("Test", 640, 480);
+	std::shared_ptr<SDLScreen> screen(new SDLScreen("Test", 640, 480));
+	screen->setBackground(COLOR_GRAY);
 
 //	PTR(Rect2<float>) rect1(new Rect2<float>(10, 10, 50, 50));
 //	rect1->setColor(COLOR_MAGENTA);
@@ -41,18 +42,25 @@ int main(int argc, char* args[]) {
 //	});
 //	screen.addMouseListener(rectDragListener);
 
-	PTR(Label) label(new Label("Label", 24, screen));
-	label->setPos(Vec2<float>(100, 20));
+	PTR(Label) label(new Label("Label", 24, *screen));
 	label->setColor(COLOR_WHITE);
 
 	PTR(ImageView) image(new ImageView("resources/demo.jpg"));
-	image->setPos(Vec2<float>(300, 300));
 
-	PTR(GUI) gui(new GUI());
+	PTR(Button) button(new Button("Demo", 14, *screen));
+	std::cout << "Button Width: " << button->getBoundingBox().getWidth() << std::endl;
+
+	PTR(Button) button2(new Button("Demo", 18, *screen));
+	std::cout << "Button 2 Width: " << button2->getBoundingBox().getWidth() << std::endl;
+
+	PTR(GUI) gui(new GUI(screen));
 	gui->add(label);
+	gui->add(button);
 	gui->add(image);
-	screen.addOnTop(gui);
+	gui->add(button2);
+	screen->addOnTop(gui);
+	LOG.info("Initialized GUI");
 
-	screen.runMainloop(1000 / 60); // 60 tps
+	screen->runMainloop(1000 / 60); // 60 tps
 	return 0;
 }

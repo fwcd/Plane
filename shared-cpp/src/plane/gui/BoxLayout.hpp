@@ -24,6 +24,10 @@ enum BoxLayoutMode {
 	VERTICAL_BOXLAYOUT
 };
 
+/**
+ * A basic layout manager that arranges widgets
+ * along one axis.
+ */
 class BoxLayout : public ILayout {
 public:
 	BoxLayout(BoxLayoutMode mode) {
@@ -52,6 +56,31 @@ public:
 		}
 
 		container.add(widget, Vec2<float>(x, y));
+	}
+
+	virtual void relayout(IContainer& container) {
+		float x = 0;
+		float y = 0;
+		const std::vector<std::shared_ptr<IWidget>>& widgets = container.getChilds();
+		for (std::shared_ptr<IWidget> widget : widgets) {
+			float pad = widget->getPadding();
+			if (x == 0 && y == 0) {
+				x = pad;
+				y = pad;
+			}
+
+			widget->setPos(Vec2<float>(x, y));
+
+			Rect2<float> bb = widget->getBoundingBox();
+			switch (mode) {
+			case HORIZONTAL_BOXLAYOUT:
+				x += bb.getWidth() + pad;
+				break;
+			case VERTICAL_BOXLAYOUT:
+				y += bb.getWidth() + pad;
+				break;
+			}
+		}
 	}
 private:
 	BoxLayoutMode mode;

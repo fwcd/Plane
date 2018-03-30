@@ -9,9 +9,10 @@
 
 #include <string>
 
-#include "BaseWidget.hpp"
+#include "../core/IScreen.hpp"
+#include "../math/Rect2.hpp"
 #include "../math/Vec2.hpp"
-#include "../utils/Color.hpp"
+#include "BaseWidget.hpp"
 
 namespace plane {
 
@@ -35,6 +36,8 @@ public:
 		const Vec2<float>& pos = getPos();
 		if (width < 0 || height < 0) {
 			screen.drawImage(imgFilePath, pos.getX(), pos.getY(), width, height);
+			getBBReference().setSize(width, height);
+			relayout();
 		} else {
 			screen.drawImageSized(imgFilePath, pos.getX(), pos.getY(), width, height);
 		}

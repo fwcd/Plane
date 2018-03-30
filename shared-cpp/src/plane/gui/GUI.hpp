@@ -22,9 +22,14 @@
 
 namespace plane {
 
+/**
+ * An abstraction that specifically manages widgets
+ * on top of the IScreen.
+ */
 class GUI : public IPaintable, public IContainer {
 public:
-	GUI() {
+	GUI(std::shared_ptr<IScreen> screen) {
+		this->screen = screen;
 		setLayout(std::shared_ptr<ILayout>(new BoxLayout(HORIZONTAL_BOXLAYOUT)));
 	}
 
@@ -36,6 +41,11 @@ public:
 
 	virtual void setLayout(std::shared_ptr<ILayout> layout) {
 		this->layout = layout;
+	}
+
+	virtual void relayout() {
+		layout->relayout(*this);
+		screen->repaintSoon();
 	}
 
 	virtual void add(std::shared_ptr<IWidget> widget) {
@@ -67,6 +77,7 @@ public:
 		}
 	}
 private:
+	std::shared_ptr<IScreen> screen;
 	Rect2<float> bb = Rect2<float>();
 	std::vector<std::shared_ptr<IWidget>> childs = std::vector<std::shared_ptr<IWidget>>();
 	std::shared_ptr<ILayout> layout = std::shared_ptr<ILayout>();

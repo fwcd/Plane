@@ -4,8 +4,8 @@
  *  Created on: 28.03.2018
  */
 
-#ifndef SRC_API_ISCREEN_HPP_
-#define SRC_API_ISCREEN_HPP_
+#ifndef SRC_PLANE_CORE_ISCREEN_HPP_
+#define SRC_PLANE_CORE_ISCREEN_HPP_
 
 #include <memory>
 #include <string>
@@ -18,11 +18,19 @@
 
 namespace plane {
 
+/**
+ * The entire graphics interface that needs to be adopted platform-specifically.
+ * It contains methods for rendering and event handling.
+ */
 class IScreen {
 public:
 	virtual ~IScreen() {}
 
 	virtual void repaintSoon() = 0;
+
+	virtual void setBackground(Color color) = 0;
+
+	virtual Color getBackground() = 0;
 
 	virtual void setColor(Color color) = 0;
 
@@ -69,4 +77,4 @@ public:
 
 }
 
-#endif /* SRC_API_ISCREEN_HPP_ */
+#endif /* SRC_PLANE_CORE_ISCREEN_HPP_ */

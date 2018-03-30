@@ -63,6 +63,10 @@ public:
 		topLeft = newTopLeft;
 	}
 
+	void setSize(float width, float height) {
+		size = Vec2<float>(width, height);
+	}
+
 	void setColor(Color color) {this->color = color; }
 
 	Color getColor() { return color; }
@@ -87,6 +91,13 @@ public:
 		} else {
 			screen.drawRect(x, y, w, h);
 		}
+	}
+
+	std::string toString() {
+		return "{x: " + std::to_string(topLeft.getX())
+			+ ", y: " + std::to_string(topLeft.getY())
+			+ ", w: " + std::to_string(getWidth())
+			+ ", h: " + std::to_string(getHeight());
 	}
 private:
 	Vec2<T> topLeft;

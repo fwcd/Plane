@@ -19,6 +19,8 @@ public:
 	virtual ~ILayout() {}
 
 	virtual void add(std::shared_ptr<IWidget> widget, IContainer& container) = 0;
+
+	virtual void relayout(IContainer& container) = 0;
 };
 
 }

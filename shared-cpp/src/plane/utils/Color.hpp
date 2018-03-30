@@ -37,6 +37,10 @@ public:
 		this->alpha = alpha;
 	}
 
+	Color withAlpha(uint8_t newAlpha) {
+		return Color(red, green, blue, newAlpha);
+	}
+
 	uint8_t getRed() { return red; }
 
 	uint8_t getGreen() { return green; }
@@ -57,7 +61,9 @@ const Color COLOR_BLUE = Color(0, 0, 255);
 const Color COLOR_YELLOW = Color(255, 255, 0);
 const Color COLOR_MAGENTA = Color(255, 0, 255);
 const Color COLOR_WHITE = Color(255, 255, 255);
+const Color COLOR_GRAY = Color(128, 128, 128);
 const Color COLOR_BLACK = Color(0, 0, 0);
+const Color COLOR_TRANSLUCENT_BLACK = Color(0, 0, 0, 128);
 const Color COLOR_TRANSPARENT = Color(0, 0, 0, 0);
 
 }
