@@ -62,9 +62,11 @@ public:
 	}
 
 	virtual void onMouseRelease(MouseEvent e) {
-		clickTarget();
-		active = false;
-		background = inactiveBackground;
+	 	if (active) {
+			clickTarget();
+			background = inactiveBackground;
+			active = false;
+		}
 	}
 private:
 	Color inactiveBackground = COLOR_BLACK;

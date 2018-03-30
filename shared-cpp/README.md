@@ -12,3 +12,4 @@ Note that this library is still in an early stage of development.
 * Headers contain both interface and implementation
 * Pure interface classes are prefixed with I
 * Class names use PascalCase, function/method/field/variable names use camelCase
+* Inherit at most one implementation class (abstract or concrete) 
