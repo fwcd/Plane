@@ -10,8 +10,8 @@
 #include <initializer_list>
 #include <vector>
 
-#include "../math/Vec2.hpp"
 #include "MouseButton.hpp"
+#include "../math/Vec2.hpp"
 
 namespace plane {
 

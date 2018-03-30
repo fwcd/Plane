@@ -4,10 +4,12 @@
  *  Created on: 28.03.2018
  */
 
-#ifndef SRC_CORE_IPAINTABLE_HPP_
-#define SRC_CORE_IPAINTABLE_HPP_
+#ifndef SRC_PLANE_CORE_IPAINTABLE_HPP_
+#define SRC_PLANE_CORE_IPAINTABLE_HPP_
 
-#include "IScreen.hpp"
+namespace plane {
+class IScreen;
+} /* namespace plane */
 
 namespace plane {
 
@@ -20,4 +22,4 @@ public:
 
 }
 
-#endif /* SRC_CORE_IPAINTABLE_HPP_ */
+#endif /* SRC_PLANE_CORE_IPAINTABLE_HPP_ */

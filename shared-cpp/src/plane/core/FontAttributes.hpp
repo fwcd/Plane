@@ -4,8 +4,8 @@
  *  Created on: 29.03.2018
  */
 
-#ifndef SRC_CORE_FONTATTRIBUTES_HPP_
-#define SRC_CORE_FONTATTRIBUTES_HPP_
+#ifndef SRC_PLANE_CORE_FONTATTRIBUTES_HPP_
+#define SRC_PLANE_CORE_FONTATTRIBUTES_HPP_
 
 namespace plane {
 
@@ -52,4 +52,4 @@ private:
 
 }
 
-#endif /* SRC_CORE_FONTATTRIBUTES_HPP_ */
+#endif /* SRC_PLANE_CORE_FONTATTRIBUTES_HPP_ */

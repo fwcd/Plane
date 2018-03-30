@@ -4,8 +4,8 @@
  *  Created on: 29.03.2018
  */
 
-#ifndef SRC_CORE_KEYEVENT_HPP_
-#define SRC_CORE_KEYEVENT_HPP_
+#ifndef SRC_PLANE_CORE_KEYEVENT_HPP_
+#define SRC_PLANE_CORE_KEYEVENT_HPP_
 
 #include <vector>
 
@@ -42,4 +42,4 @@ private:
 
 }
 
-#endif /* SRC_CORE_KEYEVENT_HPP_ */
+#endif /* SRC_PLANE_CORE_KEYEVENT_HPP_ */

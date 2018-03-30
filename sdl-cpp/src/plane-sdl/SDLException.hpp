@@ -4,10 +4,10 @@
  *  Created on: 28.03.2018
  */
 
-#ifndef SRC_SDLEXCEPTION_HPP_
-#define SRC_SDLEXCEPTION_HPP_
+#ifndef SRC_PLANE_SDL_SDLEXCEPTION_HPP_
+#define SRC_PLANE_SDL_SDLEXCEPTION_HPP_
 
-#include <utils/PlaneException.hpp>
+#include <plane/utils/PlaneException.hpp>
 #include <SDL2/SDL_error.h>
 #include <string>
 
@@ -22,4 +22,4 @@ public:
 
 }
 
-#endif /* SRC_SDLEXCEPTION_HPP_ */
+#endif /* SRC_PLANE_SDL_SDLEXCEPTION_HPP_ */

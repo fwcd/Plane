@@ -4,18 +4,21 @@
  *  Created on: 28.03.2018
  */
 
-#ifndef SRC_SDLSCREEN_HPP_
-#define SRC_SDLSCREEN_HPP_
+#ifndef SRC_PLANE_SDL_SDLSCREEN_HPP_
+#define SRC_PLANE_SDL_SDLSCREEN_HPP_
 
-#include <core/FontAttributes.hpp>
-#include <core/IPaintable.hpp>
-#include <core/IScreen.hpp>
-#include <core/KeyListener.hpp>
-#include <core/MouseButton.hpp>
-#include <core/MouseEvent.hpp>
-#include <core/MouseListener.hpp>
+#include <plane/core/FontAttributes.hpp>
+#include <plane/core/IPaintable.hpp>
+#include <plane/core/IScreen.hpp>
+#include <plane/core/KeyListener.hpp>
+#include <plane/core/MouseButton.hpp>
+#include <plane/core/MouseEvent.hpp>
+#include <plane/core/MouseListener.hpp>
+#include <plane/utils/Color.hpp>
+#include <plane/utils/Utilities.hpp>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_events.h>
+#include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mouse.h>
 #include <SDL2/SDL_pixels.h>
 #include <SDL2/SDL_rect.h>
@@ -24,7 +27,6 @@
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_video.h>
-#include <utils/Color.hpp>
 #include <algorithm>
 #include <cstdint>
 #include <functional>
@@ -32,6 +34,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "SDLException.hpp"
 
@@ -46,6 +49,9 @@ public:
 		if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 			throw SDLException("SDL initialization error");
 		}
+		if (TTF_Init() < 0) {
+			throw SDLException("Error while initializing TTF engine");
+		}
 
 		window = SDL_CreateWindow(
 				title.c_str(),
@@ -55,22 +61,18 @@ public:
 				height,
 				SDL_WINDOW_SHOWN
 		);
-		if (window == 0) {
+		if (window == nullptr) {
 			throw SDLException("Window creation error");
 		}
 
 		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-		if (renderer == 0) {
+		if (renderer == nullptr) {
 			throw SDLException("Renderer creation error");
 		}
 
-		surface = SDL_GetWindowSurface(window);
+		screenSurface = SDL_GetWindowSurface(window);
 		this->width = width;
 		this->height = height;
-
-		if (TTF_Init() < 0) {
-			throw SDLException("Error while initializing TTF engine");
-		}
 	}
 
 	virtual ~SDLScreen() {
@@ -80,7 +82,9 @@ public:
 		SDL_Quit();
 	}
 
-	virtual void repaintSoon() {} // Repainting automatically happens
+	virtual void repaintSoon() {
+		needsRepaint = true;
+	}
 
 	virtual void drawRect(float x, float y, float w, float h) {
 		SDL_Rect rect = {(int) x, (int) y, (int) w, (int) h};
@@ -100,9 +104,25 @@ public:
 		// TODO
 	}
 
+	virtual float getStringWidth(std::string str, FontAttributes attribs) {
+		return getStringBounds(str, attribs).w;
+	}
+
+	virtual float getStringHeight(std::string str, FontAttributes attribs) {
+		return getStringBounds(str, attribs).h;
+	}
+
+	virtual void drawImage(std::string filePath, float x, float y, float& returnedW, float& returnedH) {
+		drawImageImpl(filePath, x, y, returnedW, returnedH);
+	}
+
+	virtual void drawImageSized(std::string filePath, float x, float y, float w, float h) {
+		drawImageImpl(filePath, x, y, w, h);
+	}
+
 	virtual void drawString(std::string str, float x, float y, FontAttributes attribs) {
-		TTF_Font* font = TTF_OpenFont("resources/arial.ttf", attribs.getSize());
-		if (font == 0) {
+		TTF_Font* font = openTTFFont(attribs);
+		if (font == nullptr) {
 			throw SDLException("Font not found.");
 		}
 		SDL_Color textColor = getSDLColor();
@@ -152,8 +172,12 @@ public:
 		return Color(r, g, b, a);
 	}
 
-	virtual void add(shared_ptr<IPaintable> paintable) {
+	virtual void addOnTop(shared_ptr<IPaintable> paintable) {
 		paintables.push_back(paintable);
+	}
+
+	virtual void addOnBottom(shared_ptr<IPaintable> paintable) {
+		paintables.insert(paintables.begin(), paintable);
 	}
 
 	virtual void remove(shared_ptr<IPaintable> paintable) {
@@ -180,47 +204,124 @@ public:
 					switch (event.type) {
 					case SDL_MOUSEBUTTONDOWN:
 						withMouseListeners([e](MouseListener& listener) {listener.fireClick(e);});
+						repaintSoon();
 						mouseDown = true;
 						break;
 					case SDL_MOUSEMOTION:
 						if (mouseDown) {
 							withMouseListeners([e](MouseListener& listener) {listener.fireDrag(e);});
+							repaintSoon();
 						} else {
 							withMouseListeners([e](MouseListener& listener) {listener.fireMove(e);});
 						}
 						break;
 					case SDL_MOUSEBUTTONUP:
 						withMouseListeners([e](MouseListener& listener) {listener.fireRelease(e);});
+						repaintSoon();
 						mouseDown = false;
 						break;
 					}
 				}
 			}
 
-			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0xFF);
-			SDL_RenderClear(renderer);
+			if (needsRepaint) {
+				SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0xFF);
+				SDL_RenderClear(renderer);
 
-			for (shared_ptr<IPaintable> paintable : paintables) {
-				paintable->paint(*this);
+				for (shared_ptr<IPaintable> paintable : paintables) {
+					paintable->paint(*this);
+				}
+
+				SDL_RenderPresent(renderer);
+				needsRepaint = false;
 			}
 
-			SDL_RenderPresent(renderer);
 			SDL_Delay(intervalMs);
 		}
 	}
 private:
 	SDL_Window* window;
-	SDL_Surface* surface;
+	SDL_Surface* screenSurface;
 	SDL_Renderer* renderer;
 	vector<shared_ptr<MouseListener>> mouseListeners = vector<shared_ptr<MouseListener>>();
 	vector<shared_ptr<KeyListener>> keyListeners = vector<shared_ptr<KeyListener>>();
 	vector<shared_ptr<IPaintable>> paintables = vector<shared_ptr<IPaintable>>();
 	bool closed = false;
 	bool mouseDown = false;
+	bool needsRepaint = true;
 	int width;
 	int height;
 	float lastMouseX = -1;
 	float lastMouseY = -1;
+
+	void drawImageImpl(std::string filePath, float x, float y, float& w, float& h) {
+		initSDLImage(filePath);
+		SDL_Surface* imgSurface = imgToSurface(filePath);
+		SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, imgSurface);
+		if (w < 0) {
+			w = imgSurface->w;
+		}
+		if (h < 0) {
+			h = imgSurface->h;
+		}
+
+		SDL_Rect bounds = {(int) x, (int) y, (int) w, (int) h};
+
+		SDL_RenderCopy(renderer, texture, 0, &bounds);
+
+		SDL_DestroyTexture(texture);
+		SDL_FreeSurface(imgSurface);
+		IMG_Quit();
+	}
+
+	SDL_Rect getStringBounds(std::string str, FontAttributes attribs) {
+		TTF_Font* font = openTTFFont(attribs);
+		if (font == nullptr) {
+			throw SDLException("Font not found.");
+		}
+		SDL_Surface* textSurface = TTF_RenderText_Solid(font, str.c_str(), getSDLColor());
+		int textWidth = textSurface->w;
+		int textHeight = textSurface->h;
+		SDL_FreeSurface(textSurface);
+		TTF_CloseFont(font);
+
+		return {0, 0, textWidth, textHeight};
+	}
+
+	TTF_Font* openTTFFont(FontAttributes attribs) {
+		return TTF_OpenFont("resources/arial.ttf", attribs.getSize());
+	}
+
+	void initSDLImage(std::string path) {
+		int imgFlags = 0;
+		if (endsWith(path, "png") || endsWith(path, "PNG")) {
+			imgFlags = IMG_INIT_PNG;
+		} else if (endsWith(path, "jpg") || endsWith(path, "JPG")) {
+			imgFlags = IMG_INIT_JPG;
+		} else if (endsWith(path, "tif") || endsWith(path, "TIF")) {
+			imgFlags = IMG_INIT_TIF;
+		} else if (endsWith(path, "webp") || endsWith(path, "WEBP")) {
+			imgFlags = IMG_INIT_WEBP;
+		}
+		if (!(IMG_Init(imgFlags) & imgFlags)) {
+			throw SDLException("SDL_image could not be initialized");
+		}
+	}
+
+	SDL_Surface* imgToSurface(std::string path) {
+		SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+		if (loadedSurface == nullptr) {
+			throw SDLException("Could not load image at " + path);
+		}
+
+		SDL_Surface* optimizedSurface = SDL_ConvertSurface(loadedSurface, screenSurface->format, 0);
+		if (optimizedSurface == nullptr) {
+			throw SDLException("Could not optimize image at " + path);
+		}
+
+		SDL_FreeSurface(loadedSurface);
+		return optimizedSurface;
+	}
 
 	SDL_Color getSDLColor() {
 		SDL_Color color;
@@ -280,4 +381,4 @@ private:
 
 }
 
-#endif /* SRC_SDLSCREEN_HPP_ */
+#endif /* SRC_PLANE_SDL_SDLSCREEN_HPP_ */

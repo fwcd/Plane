@@ -9,13 +9,16 @@
 
 #include <memory>
 
-#include "../math/Rect2.hpp"
+#include "../core/IPaintable.hpp"
 #include "../math/Vec2.hpp"
+#include "IBoxBounded.hpp"
 #include "GUI.hpp"
 
 namespace plane {
 
-class IWidget : public IPaintable {
+class GUI;
+
+class IWidget : public IPaintable, public IBoxBounded {
 public:
 	virtual ~IWidget() {}
 
@@ -27,9 +30,9 @@ public:
 
 	virtual Vec2<float> getPos() = 0;
 
-	virtual void setBoundingBox(Rect2<float> bb) = 0;
+	virtual float getPadding() = 0;
 
-	virtual Rect2<float> getBoundingBox() = 0;
+	virtual void setPadding(float padding) = 0;
 };
 
 }

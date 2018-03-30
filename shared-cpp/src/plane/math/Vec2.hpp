@@ -4,8 +4,8 @@
  *  Created on: 28.03.2018
  */
 
-#ifndef SRC_MATH_VEC2_HPP_
-#define SRC_MATH_VEC2_HPP_
+#ifndef SRC_PLANE_MATH_VEC2_HPP_
+#define SRC_PLANE_MATH_VEC2_HPP_
 
 #include <cmath>
 
@@ -56,4 +56,4 @@ private:
 
 }
 
-#endif /* SRC_MATH_VEC2_HPP_ */
+#endif /* SRC_PLANE_MATH_VEC2_HPP_ */

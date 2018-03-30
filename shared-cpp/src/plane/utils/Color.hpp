@@ -4,8 +4,8 @@
  *  Created on: 29.03.2018
  */
 
-#ifndef SRC_UTILS_COLOR_HPP_
-#define SRC_UTILS_COLOR_HPP_
+#ifndef SRC_PLANE_UTILS_COLOR_HPP_
+#define SRC_PLANE_UTILS_COLOR_HPP_
 
 #include <cstdint>
 
@@ -62,4 +62,4 @@ const Color COLOR_TRANSPARENT = Color(0, 0, 0, 0);
 
 }
 
-#endif /* SRC_UTILS_COLOR_HPP_ */
+#endif /* SRC_PLANE_UTILS_COLOR_HPP_ */

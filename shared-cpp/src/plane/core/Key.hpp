@@ -4,11 +4,11 @@
  *  Created on: 29.03.2018
  */
 
-#ifndef SRC_CORE_KEY_HPP_
-#define SRC_CORE_KEY_HPP_
+#ifndef SRC_PLANE_CORE_KEY_HPP_
+#define SRC_PLANE_CORE_KEY_HPP_
 
-#include "../utils/PlaneException.hpp"
 #include "SpecialKey.hpp"
+#include "../utils/PlaneException.hpp"
 
 namespace plane {
 
@@ -59,4 +59,4 @@ private:
 
 }
 
-#endif /* SRC_CORE_KEY_HPP_ */
+#endif /* SRC_PLANE_CORE_KEY_HPP_ */

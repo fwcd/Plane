@@ -11,13 +11,10 @@
 #include <string>
 
 #include "FontAttributes.hpp"
-
-namespace plane {
-class Color;
-class IPaintable;
-class KeyListener;
-class MouseListener;
-} /* namespace plane */
+#include "KeyListener.hpp"
+#include "MouseListener.hpp"
+#include "IPaintable.hpp"
+#include "../utils/Color.hpp"
 
 namespace plane {
 
@@ -43,11 +40,21 @@ public:
 
 	virtual void fillOval(float x, float y, float w, float h) = 0;
 
+	virtual void drawImage(std::string filePath, float x, float y, float& returnedW, float& returnedH) = 0;
+
+	virtual void drawImageSized(std::string filePath, float x, float y, float w, float h) = 0;
+
 	virtual void drawString(std::string str, float x, float y, FontAttributes attribs) = 0;
+
+	virtual float getStringWidth(std::string str, FontAttributes attribs) = 0;
+
+	virtual float getStringHeight(std::string str, FontAttributes attribs) = 0;
 
 	virtual void drawLine(float startX, float startY, float endX, float endY) = 0;
 
-	virtual void add(std::shared_ptr<IPaintable> paintable) = 0;
+	virtual void addOnTop(std::shared_ptr<IPaintable> paintable) = 0;
+
+	virtual void addOnBottom(std::shared_ptr<IPaintable> paintable) = 0;
 
 	virtual void remove(std::shared_ptr<IPaintable> paintable) = 0;
 

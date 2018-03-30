@@ -4,8 +4,8 @@
  *  Created on: 29.03.2018
  */
 
-#ifndef SRC_CORE_KEYLISTENER_HPP_
-#define SRC_CORE_KEYLISTENER_HPP_
+#ifndef SRC_PLANE_CORE_KEYLISTENER_HPP_
+#define SRC_PLANE_CORE_KEYLISTENER_HPP_
 
 #include <functional>
 
@@ -39,4 +39,4 @@ private:
 
 }
 
-#endif /* SRC_CORE_KEYLISTENER_HPP_ */
+#endif /* SRC_PLANE_CORE_KEYLISTENER_HPP_ */
