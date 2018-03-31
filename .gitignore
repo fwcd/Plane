@@ -3,3 +3,5 @@ Debug/
 bin/
 .metadata/
 /.recommenders/
+.DS_Store
+xcuserdata/

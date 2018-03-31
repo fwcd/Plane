@@ -16,12 +16,12 @@ class Key {
 public:
 	Key() {
 		keyChar = 0;
-		special = SpecialKey::NO_KEY;
+		special = NO_KEY;
 	}
 
 	Key(char keyChar) {
 		this->keyChar = keyChar;
-		special = SpecialKey::NO_KEY;
+		special = NO_KEY;
 	}
 
 	Key(SpecialKey special) {
@@ -49,7 +49,7 @@ public:
 
 	bool hasChar() { return keyChar != 0; }
 
-	bool isSpecial() { return special != SpecialKey::NO_KEY; }
+	bool isSpecial() { return special != NO_KEY; }
 
 	virtual ~Key() {}
 private:

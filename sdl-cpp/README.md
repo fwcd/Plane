@@ -15,6 +15,7 @@ Contains a reference implementation of the Plane API using Simple DirectMedia La
 * If this is not already the case configure the build under Properties > C++ Build > Settings > Tool Settings:
     * Under GCC C++ Compiler > Includes:
         * Add the shared-cpp src folder as include path
+        * Add the shared-cpp test folder as include path
     * Under MinGW C++ Linker > Libraries:
         * Add the libraries "mingw32", "SDL2main", "SDL2", "SDL2\_image" and "SDL2\_ttf" (without quotes)
         * Add the library search path "C:\MinGW\lib"

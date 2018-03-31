@@ -10,6 +10,10 @@
 #include <stdexcept>
 #include <string>
 
+#ifndef _NOEXCEPT
+#define _NOEXCEPT
+#endif
+
 namespace plane {
 
 /**
@@ -19,7 +23,7 @@ class PlaneException : public std::runtime_error {
 public:
 	PlaneException(std::string msg) : std::runtime_error(msg) {}
 
-	virtual ~PlaneException() {}
+	virtual ~PlaneException() _NOEXCEPT {}
 };
 
 }
