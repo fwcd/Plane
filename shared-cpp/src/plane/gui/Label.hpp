@@ -41,7 +41,6 @@ public:
 
 	virtual void paint(IScreen& screen) {
 		const Vec2<float>& pos = getPos();
-		screen.setColor(color);
 		screen.drawString(text, pos.getX(), pos.getY(), attribs);
 	}
 private:

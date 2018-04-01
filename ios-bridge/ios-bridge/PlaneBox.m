@@ -1,5 +1,5 @@
 //
-//  ObjCBox.m
+//  PlaneBox.m
 //  ios-bridge
 //
 //  Created by Fredrik on 31.03.18.
@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ObjCBox.h"
+#import "PlaneBox.h"
 
-@implementation ObjCBox
+@implementation PlaneBox
 
 - (id) initAtX:(float)x y:(float)y withWidth:(float)w andHeight:(float)h filled:(bool)filled {
     [self setX:x];

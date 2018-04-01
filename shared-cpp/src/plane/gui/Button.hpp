@@ -45,9 +45,9 @@ public:
 		Rect2<float>& bb = getBBReference();
 		const Vec2<float>& tl = bb.getTopLeft();
 		float pad = getPadding();
-
-		screen.setColor(background);
-		screen.fillRect(tl.getX(), tl.getY(), bb.getWidth(), bb.getHeight());
+		
+		Fill fill(background);
+		screen.fillRect(tl.getX(), tl.getY(), bb.getWidth(), bb.getHeight(), fill);
 
 		foreground->setPos(tl.add(Vec2<float>(pad, pad)));
 		foreground->paint(screen);

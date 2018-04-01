@@ -15,6 +15,8 @@
 #include "MouseListener.hpp"
 #include "IPaintable.hpp"
 #include "../utils/Color.hpp"
+#include "Fill.hpp"
+#include "Stroke.hpp"
 
 namespace plane {
 
@@ -32,21 +34,17 @@ public:
 
 	virtual Color getBackground() = 0;
 
-	virtual void setColor(Color color) = 0;
-
-	virtual Color getColor() = 0;
-
 	virtual float getWidth() = 0;
 
 	virtual float getHeight() = 0;
 
-	virtual void drawRect(float x, float y, float w, float h) = 0;
+	virtual void drawRect(float x, float y, float w, float h, Stroke stroke) = 0;
 
-	virtual void fillRect(float x, float y, float w, float h) = 0;
+	virtual void fillRect(float x, float y, float w, float h, Fill fill) = 0;
 
-	virtual void drawOval(float x, float y, float w, float h) = 0;
+	virtual void drawOval(float x, float y, float w, float h, Stroke stroke) = 0;
 
-	virtual void fillOval(float x, float y, float w, float h) = 0;
+	virtual void fillOval(float x, float y, float w, float h, Fill fill) = 0;
 
 	virtual void drawImage(std::string filePath, float x, float y, float& returnedW, float& returnedH) = 0;
 
@@ -58,7 +56,7 @@ public:
 
 	virtual float getStringHeight(std::string str, FontAttributes attribs) = 0;
 
-	virtual void drawLine(float startX, float startY, float endX, float endY) = 0;
+	virtual void drawLine(float startX, float startY, float endX, float endY, Stroke stroke) = 0;
 
 	virtual void addOnTop(std::shared_ptr<IPaintable> paintable) = 0;
 

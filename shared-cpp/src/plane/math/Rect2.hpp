@@ -84,12 +84,11 @@ public:
 		float y = (float) topLeft.getY();
 		float w = (float) getWidth();
 		float h = (float) getHeight();
-
-		screen.setColor(color);
+		
 		if (filled) {
-			screen.fillRect(x, y, w, h);
+			screen.fillRect(x, y, w, h, Fill(color));
 		} else {
-			screen.drawRect(x, y, w, h);
+			screen.drawRect(x, y, w, h, Stroke(color));
 		}
 	}
 

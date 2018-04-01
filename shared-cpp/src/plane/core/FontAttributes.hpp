@@ -7,6 +7,8 @@
 #ifndef SRC_PLANE_CORE_FONTATTRIBUTES_HPP_
 #define SRC_PLANE_CORE_FONTATTRIBUTES_HPP_
 
+#include "../utils/Color.hpp"
+
 namespace plane {
 
 class FontAttributes {
@@ -33,7 +35,9 @@ public:
 	}
 
 	virtual ~FontAttributes() {}
-
+	
+	void setColor(Color color) { this->color = color; }
+	
 	void setSize(float size) { this->size = size; }
 
 	float getSize() { return size; }
@@ -48,6 +52,7 @@ private:
 	bool bold;
 	bool italic;
 	bool underlined;
+	Color color = DEFAULT_COLOR;
 };
 
 }

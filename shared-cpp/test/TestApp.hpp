@@ -21,7 +21,7 @@
 
 namespace plane {
 
-class TestApp : PlaneApp {
+class TestApp : public PlaneApp {
 public:
 	virtual ~TestApp() {}
 

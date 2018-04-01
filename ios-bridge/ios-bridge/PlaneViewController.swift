@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PlaneViewController.swift
 //  ios-bridge
 //
 //  Created by Fredrik on 31.03.18.
@@ -8,11 +8,7 @@
 
 import UIKit
 
-class ViewController : UIViewController {
-    override func loadView() {
-        view = CoreGraphicsUIView();
-    }
-    
+class PlaneViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

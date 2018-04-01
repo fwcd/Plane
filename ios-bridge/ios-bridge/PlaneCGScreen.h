@@ -1,18 +1,19 @@
 //
-//  CoreGraphicsScreen.h
+//  PlaneCGScreen.h
 //  ios-bridge
 //
 //  Created by Fredrik on 31.03.18.
 //  Copyright © 2018 fwcd. All rights reserved.
 //
 
-#ifndef CoreGraphicsScreen_h
-#define CoreGraphicsScreen_h
+#ifndef PlaneCGScreen_h
+#define PlaneCGScreen_h
 
-#include "../../shared-cpp/src/plane/core/IScreen.hpp"
-#include "../../shared-cpp/src/plane/utils/Color.hpp"
-#import "CoreGraphicsUIView.h"
-#import <UIKit/UIColor.h>
+#import "../../shared-cpp/src/plane/core/IScreen.hpp"
+#import "../../shared-cpp/src/plane/utils/Color.hpp"
+
+#import <UIKit/UIKit.h>
+#import "ios_bridge-Swift.h"
 
 using plane::IScreen;
 using plane::Color;
@@ -20,12 +21,14 @@ using plane::FontAttributes;
 using plane::IPaintable;
 using plane::KeyListener;
 using plane::MouseListener;
+using plane::Fill;
+using plane::Stroke;
 
-class CoreGraphicsScreen : public IScreen {
+class PlaneCGScreen : public IScreen {
 public:
-    CoreGraphicsScreen(CoreGraphicsUIView* view);
+    PlaneCGScreen(PlaneCGView* view);
     
-    virtual ~CoreGraphicsScreen();
+    virtual ~PlaneCGScreen();
     
     virtual void repaintSoon();
     
@@ -33,21 +36,17 @@ public:
     
     virtual Color getBackground();
     
-    virtual void setColor(Color color);
-    
-    virtual Color getColor();
-    
     virtual float getWidth();
     
     virtual float getHeight();
     
-    virtual void drawRect(float x, float y, float w, float h);
+    virtual void drawRect(float x, float y, float w, float h, Stroke stroke);
     
-    virtual void fillRect(float x, float y, float w, float h);
+    virtual void fillRect(float x, float y, float w, float h, Fill fill);
     
-    virtual void drawOval(float x, float y, float w, float h);
+    virtual void drawOval(float x, float y, float w, float h, Stroke stroke);
     
-    virtual void fillOval(float x, float y, float w, float h);
+    virtual void fillOval(float x, float y, float w, float h, Fill fill);
     
     virtual void drawImage(std::string filePath, float x, float y, float& returnedW, float& returnedH);
     
@@ -59,7 +58,7 @@ public:
     
     virtual float getStringHeight(std::string str, FontAttributes attribs);
     
-    virtual void drawLine(float startX, float startY, float endX, float endY);
+    virtual void drawLine(float startX, float startY, float endX, float endY, Stroke stroke);
     
     virtual void addOnTop(std::shared_ptr<IPaintable> paintable);
     
@@ -75,12 +74,11 @@ public:
     
     virtual void removeMouseListener(std::shared_ptr<MouseListener> mouseListener);
 private:
-    CoreGraphicsUIView* view;
-    Color currentColor = plane::COLOR_BLACK;
+    PlaneCGView* view;
     
     UIColor* toUIColor(Color color);
     
     Color fromUIColor(UIColor* color);
 };
 
-#endif /* CoreGraphicsScreen_h */
+#endif /* PlaneCGScreen_h */
