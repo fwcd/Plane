@@ -9,6 +9,7 @@
 #define TEST_TESTAPP_HPP_
 
 #include <memory>
+#include <iostream>
 
 #include "../src/plane/core/IScreen.hpp"
 #include "../src/plane/core/PlaneApp.hpp"

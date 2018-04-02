@@ -38,6 +38,8 @@ public:
 	
 	void setColor(Color color) { this->color = color; }
 	
+	Color getColor() { return color; }
+	
 	void setSize(float size) { this->size = size; }
 
 	float getSize() { return size; }

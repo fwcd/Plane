@@ -36,7 +36,7 @@ public:
 	virtual ~Label() {}
 
 	void setColor(Color color) {
-		this->color = color;
+		attribs.setColor(color);
 	}
 
 	virtual void paint(IScreen& screen) {
@@ -45,7 +45,6 @@ public:
 	}
 private:
 	std::string text;
-	Color color = COLOR_BLACK;
 	FontAttributes attribs;
 };
 

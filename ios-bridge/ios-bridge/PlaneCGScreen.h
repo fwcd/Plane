@@ -12,6 +12,8 @@
 #import "../../shared-cpp/src/plane/core/IScreen.hpp"
 #import "../../shared-cpp/src/plane/utils/Color.hpp"
 
+#import <vector>
+
 #import <UIKit/UIKit.h>
 #import "ios_bridge-Swift.h"
 
@@ -21,12 +23,19 @@ using plane::FontAttributes;
 using plane::IPaintable;
 using plane::KeyListener;
 using plane::MouseListener;
+using plane::MouseEvent;
 using plane::Fill;
 using plane::Stroke;
 
+/**
+ * The C++ screen implementation that allows Plane-based
+ * applications to interface with UIKit and CoreGraphics.
+ */
 class PlaneCGScreen : public IScreen {
 public:
     PlaneCGScreen(PlaneCGView* view);
+    
+    PlaneCGScreen(const PlaneCGScreen& screen);
     
     virtual ~PlaneCGScreen();
     
@@ -73,8 +82,19 @@ public:
     virtual void removeKeyListener(std::shared_ptr<KeyListener> keyListener);
     
     virtual void removeMouseListener(std::shared_ptr<MouseListener> mouseListener);
+    
+    virtual void onRender();
+    
+    virtual void onTouchDown(MouseEvent event);
+    
+    virtual void onTouchMove(MouseEvent event);
+    
+    virtual void onTouchUp(MouseEvent event);
 private:
     PlaneCGView* view;
+    std::vector<std::shared_ptr<IPaintable>> paintables;
+    std::vector<std::shared_ptr<MouseListener>> mouseListeners;
+    std::vector<std::shared_ptr<KeyListener>> keyListeners;
     
     UIColor* toUIColor(Color color);
     

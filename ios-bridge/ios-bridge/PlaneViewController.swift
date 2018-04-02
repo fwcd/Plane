@@ -9,14 +9,33 @@
 import UIKit
 
 class PlaneViewController : UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+	private var app: PlaneAppHolder?
+	override var prefersStatusBarHidden: Bool {
+		// TODO: This value is probably queried before app is intialized
+		return !(app?.showsStatusBar() ?? false)
+	}
+	
+	override func loadView() {
+		view = PlaneCGView()
+		app = PlaneAppHolder(view: view)
+		app!.startApp()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		app?.onTouchDown(touches)
+	}
+	
+	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		app?.onTouchMove(touches)
+	}
+	
+	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		app?.onTouchUp(touches)
+	}
 }
 

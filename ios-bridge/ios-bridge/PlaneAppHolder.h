@@ -10,10 +10,26 @@
 #define PlaneAppHolder_h
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UITouch.h>
 
+/** 
+ * The pure Objective-C/Swift interface for
+ * accessing the application. A wrapper class
+ * around PlaneApp.
+ */
 @interface PlaneAppHolder : NSObject
 
-- (id) initWithNewApp;
+- (id) initWithView:(id)view;
+
+- (bool) showsStatusBar;
+
+- (void) startApp;
+
+- (void) onTouchDown:(NSSet<UITouch*>*)touches;
+
+- (void) onTouchMove:(NSSet<UITouch*>*)touches;
+
+- (void) onTouchUp:(NSSet<UITouch*>*)touches;
 
 @end
 

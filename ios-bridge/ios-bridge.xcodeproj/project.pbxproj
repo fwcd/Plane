@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		359564F0207284FD0091FFF9 /* PlaneLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359564EF207284FD0091FFF9 /* PlaneLine.swift */; };
+		359564F2207286FF0091FFF9 /* PlaneBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359564F1207286FF0091FFF9 /* PlaneBox.swift */; };
+		359564F4207289040091FFF9 /* PlaneString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359564F3207289040091FFF9 /* PlaneString.swift */; };
+		359564FB2072906A0091FFF9 /* PlaneRenderCallback.mm in Sources */ = {isa = PBXBuildFile; fileRef = 359564FA2072906A0091FFF9 /* PlaneRenderCallback.mm */; };
 		35AD1BA5206FB50D009E78F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AD1BA4206FB50D009E78F8 /* AppDelegate.swift */; };
 		35AD1BA7206FB50D009E78F8 /* PlaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AD1BA6206FB50D009E78F8 /* PlaneViewController.swift */; };
 		35AD1BAA206FB50D009E78F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35AD1BA8206FB50D009E78F8 /* Main.storyboard */; };
 		35AD1BAC206FB50D009E78F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35AD1BAB206FB50D009E78F8 /* Assets.xcassets */; };
 		35AD1BAF206FB50D009E78F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35AD1BAD206FB50D009E78F8 /* LaunchScreen.storyboard */; };
-		35AD1BBA206FB50D009E78F8 /* ios_bridgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AD1BB9206FB50D009E78F8 /* ios_bridgeTests.swift */; };
-		35AD1BC5206FB50E009E78F8 /* ios_bridgeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AD1BC4206FB50E009E78F8 /* ios_bridgeUITests.swift */; };
 		35AD1C2B206FC3D8009E78F8 /* .cproject in Resources */ = {isa = PBXBuildFile; fileRef = 35AD1C02206FC3D8009E78F8 /* .cproject */; };
 		35AD1C2C206FC3D9009E78F8 /* .project in Resources */ = {isa = PBXBuildFile; fileRef = 35AD1C03206FC3D8009E78F8 /* .project */; };
 		35AD1C2D206FC3D9009E78F8 /* language.settings.xml in Resources */ = {isa = PBXBuildFile; fileRef = 35AD1C05206FC3D8009E78F8 /* language.settings.xml */; };
@@ -21,12 +23,9 @@
 		35AD1C2F206FC3D9009E78F8 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 35AD1C07206FC3D8009E78F8 /* README.md */; };
 		35AD1C54206FC829009E78F8 /* PlaneCGScreen.h in Sources */ = {isa = PBXBuildFile; fileRef = 35AD1C53206FC829009E78F8 /* PlaneCGScreen.h */; };
 		35AD1C56206FD4C3009E78F8 /* PlaneCGScreen.mm in Sources */ = {isa = PBXBuildFile; fileRef = 35AD1C55206FD4C3009E78F8 /* PlaneCGScreen.mm */; };
-		35AD1C65207022E8009E78F8 /* PlaneBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AD1C64207022E8009E78F8 /* PlaneBox.m */; };
 		35DB62452071311500747DE0 /* PlaneAppHolder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 35DB62442071311500747DE0 /* PlaneAppHolder.mm */; };
-		35DB62482071394400747DE0 /* TestAppHolder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 35DB62472071394400747DE0 /* TestAppHolder.mm */; };
 		35DB624C20713CE200747DE0 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DB624B20713CE200747DE0 /* Queue.swift */; };
 		35DB62512071447A00747DE0 /* PlaneCGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DB62502071447A00747DE0 /* PlaneCGView.swift */; };
-		35DB627C20717BD300747DE0 /* PlaneLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DB627B20717BD300747DE0 /* PlaneLine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +46,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		359564EB20724D760091FFF9 /* ios-bridge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios-bridge-Bridging-Header.h"; sourceTree = "<group>"; };
+		359564EC207275E60091FFF9 /* APP-INFO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "APP-INFO.h"; sourceTree = "<group>"; };
+		359564EF207284FD0091FFF9 /* PlaneLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaneLine.swift; sourceTree = "<group>"; };
+		359564F1207286FF0091FFF9 /* PlaneBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaneBox.swift; sourceTree = "<group>"; };
+		359564F3207289040091FFF9 /* PlaneString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaneString.swift; sourceTree = "<group>"; };
+		359564F820728EFD0091FFF9 /* PlaneRenderCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneRenderCallback.h; sourceTree = "<group>"; };
+		359564F920728FD40091FFF9 /* PlaneRenderCallback-protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlaneRenderCallback-protected.h"; sourceTree = "<group>"; };
+		359564FA2072906A0091FFF9 /* PlaneRenderCallback.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlaneRenderCallback.mm; sourceTree = "<group>"; };
 		35AD1BA1206FB50D009E78F8 /* ios-bridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-bridge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35AD1BA4206FB50D009E78F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; wrapsLines = 1; };
 		35AD1BA6206FB50D009E78F8 /* PlaneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneViewController.swift; sourceTree = "<group>"; };
@@ -55,11 +62,7 @@
 		35AD1BAE206FB50D009E78F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35AD1BB0206FB50D009E78F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35AD1BB5206FB50D009E78F8 /* ios-bridgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-bridgeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		35AD1BB9206FB50D009E78F8 /* ios_bridgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_bridgeTests.swift; sourceTree = "<group>"; usesTabs = 1; wrapsLines = 0; };
-		35AD1BBB206FB50D009E78F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35AD1BC0206FB50E009E78F8 /* ios-bridgeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-bridgeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		35AD1BC4206FB50E009E78F8 /* ios_bridgeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_bridgeUITests.swift; sourceTree = "<group>"; };
-		35AD1BC6206FB50E009E78F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35AD1C02206FC3D8009E78F8 /* .cproject */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = .cproject; sourceTree = "<group>"; };
 		35AD1C03206FC3D8009E78F8 /* .project */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = .project; sourceTree = "<group>"; };
 		35AD1C05206FC3D8009E78F8 /* language.settings.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = language.settings.xml; sourceTree = "<group>"; };
@@ -93,22 +96,14 @@
 		35AD1C27206FC3D8009E78F8 /* PlaneException.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlaneException.hpp; sourceTree = "<group>"; };
 		35AD1C28206FC3D8009E78F8 /* Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utilities.hpp; sourceTree = "<group>"; };
 		35AD1C2A206FC3D8009E78F8 /* TestApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TestApp.hpp; sourceTree = "<group>"; };
-		35AD1C4C206FC616009E78F8 /* ios-bridge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios-bridge-Bridging-Header.h"; sourceTree = "<group>"; };
 		35AD1C53206FC829009E78F8 /* PlaneCGScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaneCGScreen.h; sourceTree = "<group>"; usesTabs = 0; };
-		35AD1C55206FD4C3009E78F8 /* PlaneCGScreen.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlaneCGScreen.mm; sourceTree = "<group>"; wrapsLines = 0; };
-		35AD1C6320702235009E78F8 /* PlaneBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneBox.h; sourceTree = "<group>"; };
-		35AD1C64207022E8009E78F8 /* PlaneBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaneBox.m; sourceTree = "<group>"; };
+		35AD1C55206FD4C3009E78F8 /* PlaneCGScreen.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlaneCGScreen.mm; sourceTree = "<group>"; wrapsLines = 1; };
 		35DB6243207130E700747DE0 /* PlaneAppHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneAppHolder.h; sourceTree = "<group>"; };
 		35DB62442071311500747DE0 /* PlaneAppHolder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlaneAppHolder.mm; sourceTree = "<group>"; };
-		35DB62462071382F00747DE0 /* TestAppHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TestAppHolder.h; path = "ios-bridgeUITests/TestAppHolder.h"; sourceTree = SOURCE_ROOT; };
-		35DB62472071394400747DE0 /* TestAppHolder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestAppHolder.mm; sourceTree = "<group>"; };
 		35DB624B20713CE200747DE0 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		35DB62502071447A00747DE0 /* PlaneCGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaneCGView.swift; sourceTree = "<group>"; };
-		35DB6252207145DB00747DE0 /* PlaneAppHolder_protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneAppHolder_protected.h; sourceTree = "<group>"; };
 		35DB62552071627E00747DE0 /* Stroke.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Stroke.hpp; sourceTree = "<group>"; usesTabs = 1; };
 		35DB62562071635B00747DE0 /* Fill.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Fill.hpp; sourceTree = "<group>"; usesTabs = 1; };
-		35DB627A20717B0F00747DE0 /* PlaneLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PlaneLine.h; path = ../PlaneLine.h; sourceTree = "<group>"; };
-		35DB627B20717BD300747DE0 /* PlaneLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaneLine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,13 +131,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		359564ED207279B00091FFF9 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				359564F1207286FF0091FFF9 /* PlaneBox.swift */,
+				359564EF207284FD0091FFF9 /* PlaneLine.swift */,
+				359564F3207289040091FFF9 /* PlaneString.swift */,
+				35DB624B20713CE200747DE0 /* Queue.swift */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
 		35AD1B98206FB50D009E78F8 = {
 			isa = PBXGroup;
 			children = (
 				35AD1C01206FC3D8009E78F8 /* shared-cpp */,
 				35AD1BA3206FB50D009E78F8 /* ios-bridge */,
-				35AD1BB8206FB50D009E78F8 /* ios-bridgeTests */,
-				35AD1BC3206FB50E009E78F8 /* ios-bridgeUITests */,
 				35AD1BA2206FB50D009E78F8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -166,40 +170,19 @@
 				35AD1BAB206FB50D009E78F8 /* Assets.xcassets */,
 				35AD1BAD206FB50D009E78F8 /* LaunchScreen.storyboard */,
 				35AD1BB0206FB50D009E78F8 /* Info.plist */,
-				35AD1C4C206FC616009E78F8 /* ios-bridge-Bridging-Header.h */,
+				359564EC207275E60091FFF9 /* APP-INFO.h */,
 				35DB6243207130E700747DE0 /* PlaneAppHolder.h */,
 				35DB62442071311500747DE0 /* PlaneAppHolder.mm */,
-				35DB6252207145DB00747DE0 /* PlaneAppHolder_protected.h */,
 				35DB62502071447A00747DE0 /* PlaneCGView.swift */,
 				35AD1C53206FC829009E78F8 /* PlaneCGScreen.h */,
 				35AD1C55206FD4C3009E78F8 /* PlaneCGScreen.mm */,
-				35AD1C6320702235009E78F8 /* PlaneBox.h */,
-				35AD1C64207022E8009E78F8 /* PlaneBox.m */,
-				35DB627A20717B0F00747DE0 /* PlaneLine.h */,
-				35DB627B20717BD300747DE0 /* PlaneLine.m */,
-				35DB624B20713CE200747DE0 /* Queue.swift */,
-				35DB62462071382F00747DE0 /* TestAppHolder.h */,
-				35DB62472071394400747DE0 /* TestAppHolder.mm */,
+				359564F820728EFD0091FFF9 /* PlaneRenderCallback.h */,
+				359564F920728FD40091FFF9 /* PlaneRenderCallback-protected.h */,
+				359564FA2072906A0091FFF9 /* PlaneRenderCallback.mm */,
+				359564ED207279B00091FFF9 /* utils */,
+				359564EB20724D760091FFF9 /* ios-bridge-Bridging-Header.h */,
 			);
 			path = "ios-bridge";
-			sourceTree = "<group>";
-		};
-		35AD1BB8206FB50D009E78F8 /* ios-bridgeTests */ = {
-			isa = PBXGroup;
-			children = (
-				35AD1BB9206FB50D009E78F8 /* ios_bridgeTests.swift */,
-				35AD1BBB206FB50D009E78F8 /* Info.plist */,
-			);
-			path = "ios-bridgeTests";
-			sourceTree = "<group>";
-		};
-		35AD1BC3206FB50E009E78F8 /* ios-bridgeUITests */ = {
-			isa = PBXGroup;
-			children = (
-				35AD1BC4206FB50E009E78F8 /* ios_bridgeUITests.swift */,
-				35AD1BC6206FB50E009E78F8 /* Info.plist */,
-			);
-			path = "ios-bridgeUITests";
 			sourceTree = "<group>";
 		};
 		35AD1C01206FC3D8009E78F8 /* shared-cpp */ = {
@@ -450,15 +433,16 @@
 			files = (
 				35DB62452071311500747DE0 /* PlaneAppHolder.mm in Sources */,
 				35AD1C2F206FC3D9009E78F8 /* README.md in Sources */,
-				35AD1C65207022E8009E78F8 /* PlaneBox.m in Sources */,
 				35DB624C20713CE200747DE0 /* Queue.swift in Sources */,
-				35DB627C20717BD300747DE0 /* PlaneLine.m in Sources */,
+				359564F0207284FD0091FFF9 /* PlaneLine.swift in Sources */,
 				35AD1BA7206FB50D009E78F8 /* PlaneViewController.swift in Sources */,
+				359564FB2072906A0091FFF9 /* PlaneRenderCallback.mm in Sources */,
 				35DB62512071447A00747DE0 /* PlaneCGView.swift in Sources */,
 				35AD1C56206FD4C3009E78F8 /* PlaneCGScreen.mm in Sources */,
 				35AD1C54206FC829009E78F8 /* PlaneCGScreen.h in Sources */,
-				35DB62482071394400747DE0 /* TestAppHolder.mm in Sources */,
+				359564F4207289040091FFF9 /* PlaneString.swift in Sources */,
 				35AD1BA5206FB50D009E78F8 /* AppDelegate.swift in Sources */,
+				359564F2207286FF0091FFF9 /* PlaneBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,7 +450,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35AD1BBA206FB50D009E78F8 /* ios_bridgeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +457,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35AD1BC5206FB50E009E78F8 /* ios_bridgeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
