@@ -4,3 +4,4 @@
 
 #import "PlaneAppHolder.h"
 #import "PlaneRenderCallback.h"
+#import "PlaneLog.h"

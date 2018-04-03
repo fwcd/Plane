@@ -16,6 +16,7 @@ public class PlaneImage : NSObject {
 	
 	@objc
 	public init(path: String, source: CGDataProvider, x: Float, y: Float, w: Float, h: Float, shouldInterpolate: Bool) {
+		pLogDebug("Loading image from " + path)
 		let intent = CGColorRenderingIntent.defaultIntent
 		let optionalImg: CGImage?
 		
@@ -31,5 +32,15 @@ public class PlaneImage : NSObject {
 		img = optionalImg!
 		
 		bounds = CGRect(x: CGFloat(x), y: CGFloat(y), width: (w < 0 ? CGFloat(img.width) : CGFloat(w)), height: (h < 0 ? CGFloat(img.height) : CGFloat(h)))
+	}
+	
+	@objc
+	public func getWidth() -> Float {
+		return Float(bounds.width);
+	}
+	
+	@objc
+	public func getHeight() -> Float {
+		return Float(bounds.height);
 	}
 }

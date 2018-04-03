@@ -112,13 +112,22 @@ NSString* PlaneCGScreen::toNSString(std::string str) {
 	return [[NSString alloc] initWithCString:str.c_str() encoding:NSUTF8StringEncoding];
 }
 
-void PlaneCGScreen::drawImage(std::string filePath, float x, float y, float& returnedW, float& returnedH) {
-	NSString* path = toNSString(APP_CLASS_FOLDER + filePath);
+PlaneImage* PlaneCGScreen::loadImage(std::string filePath, float x, float y, float w, float h) {
+	std::string path = APP_CLASS_FOLDER + filePath;
+	CGDataProviderRef source = CGDataProviderCreateWithFilename(path.c_str());
 	
+	return [[PlaneImage alloc] initWithPath:toNSString(path) source:source x:x y:y w:w h:h shouldInterpolate:true];
+}
+
+void PlaneCGScreen::drawImage(std::string filePath, float x, float y, float& returnedW, float& returnedH) {
+	PlaneImage* image = loadImage(filePath, x, y, -1, -1);
+	returnedW = [image getWidth];
+	returnedH = [image getHeight];
+	[view enqueueImage:image];
 }
 
 void PlaneCGScreen::drawImageSized(std::string filePath, float x, float y, float w, float h) {
-    // TODO
+	[view enqueueImage:loadImage(filePath, x, y, w, h)];
 }
 
 void PlaneCGScreen::drawString(std::string str, float x, float y, FontAttributes attribs) {

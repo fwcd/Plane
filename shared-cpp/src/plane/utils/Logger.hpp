@@ -21,7 +21,7 @@
 #define LEVEL_DEEP_TRACE -3
 #define LEVEL_VERY_DEEP_TRACE -4
 
-#define CURRENT_LOG_LEVEL LEVEL_INFO
+#define CURRENT_LOG_LEVEL LEVEL_DEBUG
 
 namespace plane {
 

@@ -96,6 +96,8 @@ private:
     std::vector<std::shared_ptr<MouseListener>> mouseListeners;
     std::vector<std::shared_ptr<KeyListener>> keyListeners;
     
+    PlaneImage* loadImage(std::string filePath, float x, float y, float w, float h);
+    
     UIColor* toUIColor(Color color);
     
     Color fromUIColor(UIColor* color);
