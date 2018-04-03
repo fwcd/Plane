@@ -99,6 +99,10 @@ private:
     UIColor* toUIColor(Color color);
     
     Color fromUIColor(UIColor* color);
+    
+    NSString* toNSString(std::string str);
+    
+    UIFont* toUIFont(FontAttributes attribs);
 };
 
 #endif /* PlaneCGScreen_h */

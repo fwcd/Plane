@@ -12,7 +12,7 @@
 #import "ios_bridge-Swift.h"
 
 #import "APP-INFO.h"
-#import APP_CLASS_HEADER
+#import APP_CLASS_IMPORT
 
 #import "PlaneAppHolder.h"
 #import "PlaneCGScreen.h"

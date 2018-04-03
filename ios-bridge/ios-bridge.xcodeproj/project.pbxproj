@@ -11,6 +11,8 @@
 		359564F2207286FF0091FFF9 /* PlaneBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359564F1207286FF0091FFF9 /* PlaneBox.swift */; };
 		359564F4207289040091FFF9 /* PlaneString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359564F3207289040091FFF9 /* PlaneString.swift */; };
 		359564FB2072906A0091FFF9 /* PlaneRenderCallback.mm in Sources */ = {isa = PBXBuildFile; fileRef = 359564FA2072906A0091FFF9 /* PlaneRenderCallback.mm */; };
+		359564FD2073971A0091FFF9 /* PlaneImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359564FC207397190091FFF9 /* PlaneImage.swift */; };
+		359564FF20739AF60091FFF9 /* PlaneError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359564FE20739AF60091FFF9 /* PlaneError.swift */; };
 		35AD1BA5206FB50D009E78F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AD1BA4206FB50D009E78F8 /* AppDelegate.swift */; };
 		35AD1BA7206FB50D009E78F8 /* PlaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AD1BA6206FB50D009E78F8 /* PlaneViewController.swift */; };
 		35AD1BAA206FB50D009E78F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35AD1BA8206FB50D009E78F8 /* Main.storyboard */; };
@@ -54,6 +56,8 @@
 		359564F820728EFD0091FFF9 /* PlaneRenderCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneRenderCallback.h; sourceTree = "<group>"; };
 		359564F920728FD40091FFF9 /* PlaneRenderCallback-protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlaneRenderCallback-protected.h"; sourceTree = "<group>"; };
 		359564FA2072906A0091FFF9 /* PlaneRenderCallback.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlaneRenderCallback.mm; sourceTree = "<group>"; };
+		359564FC207397190091FFF9 /* PlaneImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaneImage.swift; sourceTree = "<group>"; };
+		359564FE20739AF60091FFF9 /* PlaneError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaneError.swift; sourceTree = "<group>"; };
 		35AD1BA1206FB50D009E78F8 /* ios-bridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-bridge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35AD1BA4206FB50D009E78F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; wrapsLines = 1; };
 		35AD1BA6206FB50D009E78F8 /* PlaneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				359564F1207286FF0091FFF9 /* PlaneBox.swift */,
 				359564EF207284FD0091FFF9 /* PlaneLine.swift */,
 				359564F3207289040091FFF9 /* PlaneString.swift */,
+				359564FC207397190091FFF9 /* PlaneImage.swift */,
+				359564FE20739AF60091FFF9 /* PlaneError.swift */,
 				35DB624B20713CE200747DE0 /* Queue.swift */,
 			);
 			name = utils;
@@ -434,7 +440,9 @@
 				35DB62452071311500747DE0 /* PlaneAppHolder.mm in Sources */,
 				35AD1C2F206FC3D9009E78F8 /* README.md in Sources */,
 				35DB624C20713CE200747DE0 /* Queue.swift in Sources */,
+				359564FD2073971A0091FFF9 /* PlaneImage.swift in Sources */,
 				359564F0207284FD0091FFF9 /* PlaneLine.swift in Sources */,
+				359564FF20739AF60091FFF9 /* PlaneError.swift in Sources */,
 				35AD1BA7206FB50D009E78F8 /* PlaneViewController.swift in Sources */,
 				359564FB2072906A0091FFF9 /* PlaneRenderCallback.mm in Sources */,
 				35DB62512071447A00747DE0 /* PlaneCGView.swift in Sources */,

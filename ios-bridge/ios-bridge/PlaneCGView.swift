@@ -21,23 +21,27 @@ public class PlaneCGView : UIView {
     private var ovalPaintQueue = Queue<PlaneBox>()
 	private var linePaintQueue = Queue<PlaneLine>()
 	private var stringPaintQueue = Queue<PlaneString>()
+	private var imagePaintQueue = Queue<PlaneImage>()
 	private var paintableRenderer: PlaneRenderCallback?
 	
     override public func draw(_ rect: CGRect) {
 		paintableRenderer?.onRender()
 		
-        let ctx: CGContext? = UIGraphicsGetCurrentContext()
-        ctx?.setLineWidth(4.0)
+		guard let ctx: CGContext = UIGraphicsGetCurrentContext() else { return }
+		ctx.textMatrix = ctx.textMatrix
+				.scaledBy(x: 1, y: -1)
+				.translatedBy(x: 0, y: -bounds.height)
+        ctx.setLineWidth(4.0)
 		
         while !rectPaintQueue.isEmpty {
 			let rect: PlaneBox = rectPaintQueue.poll()
 			
 			if rect.filled {
-				ctx?.setFillColor(rect.color.cgColor)
-				ctx?.fill(rect.toCGRect())
+				ctx.setFillColor(rect.color.cgColor)
+				ctx.fill(rect.toCGRect())
 			} else {
-				ctx?.setStrokeColor(rect.color.cgColor)
-				ctx?.addRect(rect.toCGRect())
+				ctx.setStrokeColor(rect.color.cgColor)
+				ctx.addRect(rect.toCGRect())
 				
 			}
         }
@@ -46,36 +50,41 @@ public class PlaneCGView : UIView {
 			let oval: PlaneBox = ovalPaintQueue.poll()
 			
 			if oval.filled {
-				ctx?.setFillColor(oval.color.cgColor)
-				ctx?.fillEllipse(in: oval.toCGRect())
+				ctx.setFillColor(oval.color.cgColor)
+				ctx.fillEllipse(in: oval.toCGRect())
 			} else {
-				ctx?.setStrokeColor(oval.color.cgColor)
-				ctx?.addEllipse(in: oval.toCGRect())
+				ctx.setStrokeColor(oval.color.cgColor)
+				ctx.addEllipse(in: oval.toCGRect())
 			}
         }
 		
 		while !linePaintQueue.isEmpty {
 			let line: PlaneLine = linePaintQueue.poll()
 			
-			ctx?.setStrokeColor(line.color.cgColor)
-			ctx?.move(to: line.start)
-			ctx?.addLine(to: line.end)
+			ctx.setStrokeColor(line.color.cgColor)
+			ctx.move(to: line.start)
+			ctx.addLine(to: line.end)
 		}
 		
 		while !stringPaintQueue.isEmpty {
 			let str: PlaneString = stringPaintQueue.poll()
-			let attributedStr: CFAttributedString = CFAttributedStringCreate(nil, CFStringCreateWithCString(nil, str.value.cString(using: String.Encoding.unicode), CFStringBuiltInEncodings.unicode.rawValue), nil)
-			let line: CTLine = CTLineCreateWithAttributedString(attributedStr)
+			let font = UIFont.systemFont(ofSize: CGFloat(str.size))
+			let attributes = [NSForegroundColorAttributeName:str.color, NSFontAttributeName:font]
+			let attributedStr = NSAttributedString(string: str.value, attributes: attributes)
+			let path = CGMutablePath()
+			path.addRect(CGRect(x: CGFloat(str.x), y: -bounds.height + CGFloat(str.y) + (font.lineHeight * 1.5), width: bounds.width, height: bounds.height))
+			let framesetter = CTFramesetterCreateWithAttributedString(attributedStr)
+			let frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, attributedStr.length), path, nil)
 			
-			// FIXME: Figure out why font rendering is not working
-			
-			ctx?.setFontSize(CGFloat(str.size))
-			ctx?.setStrokeColor(str.color.cgColor)
-			ctx?.setTextDrawingMode(CGTextDrawingMode.stroke)
-			CTLineDraw(line, ctx!)
+			CTFrameDraw(frame, ctx)
 		}
-        
-        ctx?.strokePath()
+		
+		while !imagePaintQueue.isEmpty {
+			let img: PlaneImage = imagePaintQueue.poll()
+			ctx.draw(img.img, in: img.bounds)
+		}
+		
+        ctx.strokePath()
     }
 	
 	@objc
@@ -106,5 +115,10 @@ public class PlaneCGView : UIView {
 	@objc
 	public func enqueueString(_ str: PlaneString) {
 		stringPaintQueue.insert(str)
+	}
+	
+	@objc
+	public func enqueueImage(_ img: PlaneImage) {
+		imagePaintQueue.insert(img)
 	}
 }

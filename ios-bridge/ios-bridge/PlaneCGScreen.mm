@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "PlaneCGScreen.h"
+#import <CoreText/CTLine.h>
+#import "APP-INFO.h"
 
 PlaneCGScreen::PlaneCGScreen(PlaneCGView* view) {
     this->view = view;
@@ -106,8 +108,13 @@ void PlaneCGScreen::fillOval(float x, float y, float w, float h, Fill fill) {
 					   color:toUIColor(fill.getColor())]];
 }
 
+NSString* PlaneCGScreen::toNSString(std::string str) {
+	return [[NSString alloc] initWithCString:str.c_str() encoding:NSUTF8StringEncoding];
+}
+
 void PlaneCGScreen::drawImage(std::string filePath, float x, float y, float& returnedW, float& returnedH) {
-    // TODO
+	NSString* path = toNSString(APP_CLASS_FOLDER + filePath);
+	
 }
 
 void PlaneCGScreen::drawImageSized(std::string filePath, float x, float y, float w, float h) {
@@ -115,7 +122,7 @@ void PlaneCGScreen::drawImageSized(std::string filePath, float x, float y, float
 }
 
 void PlaneCGScreen::drawString(std::string str, float x, float y, FontAttributes attribs) {
-	NSString* nsStr = [[NSString alloc] initWithCString:str.c_str() encoding:NSUTF8StringEncoding];
+	NSString* nsStr = toNSString(str);
 	[view enqueueString:[[PlaneString alloc]
 						 initAtX:x
 						 andY:y
@@ -127,12 +134,22 @@ void PlaneCGScreen::drawString(std::string str, float x, float y, FontAttributes
 						 color:toUIColor(attribs.getColor())]];
 }
 
+UIFont* PlaneCGScreen::toUIFont(FontAttributes attribs) {
+	return [UIFont systemFontOfSize:attribs.getSize()];
+}
+
 float PlaneCGScreen::getStringWidth(std::string str, FontAttributes attribs) {
-	return str.length() * attribs.getSize(); // TODO
+	CFStringRef cfString = CFStringCreateWithCString(nil, str.c_str(), CFStringGetSystemEncoding());
+	CFMutableDictionaryRef attributes = CFDictionaryCreateMutable(nil, 1, nil, nil);
+	CFDictionaryAddValue(attributes, (void*) NSFontAttributeName, (void*) toUIFont(attribs));
+	CFAttributedStringRef attributedStr = CFAttributedStringCreate(nil, cfString, attributes);
+	CTLineRef line = CTLineCreateWithAttributedString(attributedStr);
+	
+	return CTLineGetImageBounds(line, UIGraphicsGetCurrentContext()).size.width;
 }
 
 float PlaneCGScreen::getStringHeight(std::string str, FontAttributes attribs) {
-	return attribs.getSize(); // TODO
+	return [toUIFont(attribs) ascender];
 }
 
 void PlaneCGScreen::drawLine(float startX, float startY, float endX, float endY, Stroke stroke) {
