@@ -10,15 +10,19 @@
 
 #include <memory>
 
-#include "IScreen.hpp"
+#include "Screen.hpp"
 
 namespace plane {
 
+/**
+ * The base class for all applications
+ * that build upon the Plane API.
+ */
 class PlaneApp {
 public:
 	virtual ~PlaneApp() {}
 
-    virtual void initialize(std::shared_ptr<IScreen> screen) {}
+    virtual void initialize(std::shared_ptr<Screen> screen) {}
 	
 	bool doesShowMobileStatusBar() { return false; }
 };

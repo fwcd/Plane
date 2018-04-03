@@ -12,22 +12,22 @@
 #include <memory>
 #include <vector>
 
-#include "../core/IScreen.hpp"
+#include "../core/Screen.hpp"
 #include "../math/Rect2.hpp"
 #include "../math/Vec2.hpp"
 #include "../utils/Logger.hpp"
 #include "../utils/PlaneException.hpp"
 #include "BoxLayout.hpp"
-#include "IContainer.hpp"
-#include "IWidget.hpp"
+#include "Container.hpp"
+#include "Widget.hpp"
 
 namespace plane {
 
 /**
- * An abstraction that specifically manages widgets
- * on top of the IScreen.
+ * A top-level container that manages widgets
+ * on a Screen. Serves as the base to the Widget API.
  */
-class GUI : public IPaintable, public IContainer {
+class GUI : public Paintable, public Container {
 public:
 	/**
 	 * Creates a new GUI.
@@ -36,9 +36,9 @@ public:
 	 * THIS POINTER MIGHT GET PASSED AROUND AS
 	 * A SHARED_PTR!!!
 	 */
-	GUI(std::shared_ptr<IScreen> screen) {
+	GUI(std::shared_ptr<Screen> screen) {
 		this->screen = screen;
-		setLayout(std::shared_ptr<ILayout>(new BoxLayout(HORIZONTAL_BOXLAYOUT)));
+		setLayout(std::shared_ptr<Layout>(new BoxLayout(HORIZONTAL_BOXLAYOUT)));
 		addInputHooks(screen);
 	}
 
@@ -48,7 +48,7 @@ public:
 		return bb;
 	}
 
-	virtual void setLayout(std::shared_ptr<ILayout> layout) {
+	virtual void setLayout(std::shared_ptr<Layout> layout) {
 		this->layout = layout;
 	}
 
@@ -58,7 +58,7 @@ public:
 		screen->repaintSoon();
 	}
 
-	virtual void add(std::shared_ptr<IWidget> widget) {
+	virtual void add(std::shared_ptr<Widget> widget) {
 		if (layout == nullptr) {
 			throw PlaneException("Can't add a widget to a GUI without a layout.");
 		}
@@ -66,58 +66,58 @@ public:
 		layout->add(widget, *this);
 	}
 
-	virtual void add(std::shared_ptr<IWidget> widget, Vec2<float> pos) {
+	virtual void add(std::shared_ptr<Widget> widget, Vec2<float> pos) {
 		widget->setPos(pos);
 		widget->setGUI(std::shared_ptr<GUI>(this));
 		childs.push_back(widget);
 	}
 
-	virtual void remove(std::shared_ptr<IWidget> widget) {
+	virtual void remove(std::shared_ptr<Widget> widget) {
 		childs.erase(std::remove(childs.begin(), childs.end(), widget), childs.end());
 	}
 
-	virtual const std::vector<std::shared_ptr<IWidget>>& getChilds() {
+	virtual const std::vector<std::shared_ptr<Widget>>& getChilds() {
 		return childs;
 	}
 
-	virtual void paint(IScreen& screen) {
+	virtual void paint(Screen& screen) {
 		bb = Rect2<float>(0, 0, screen.getWidth(), screen.getHeight());
 
-		for (std::shared_ptr<IWidget> child : childs) {
+		for (std::shared_ptr<Widget> child : childs) {
 			child->paint(screen);
 		}
 	}
 private:
-	std::shared_ptr<IScreen> screen;
+	std::shared_ptr<Screen> screen;
 	Rect2<float> bb = Rect2<float>();
-	std::vector<std::shared_ptr<IWidget>> childs = std::vector<std::shared_ptr<IWidget>>();
-	std::shared_ptr<ILayout> layout = std::shared_ptr<ILayout>();
+	std::vector<std::shared_ptr<Widget>> childs = std::vector<std::shared_ptr<Widget>>();
+	std::shared_ptr<Layout> layout = std::shared_ptr<Layout>();
 
-	void addInputHooks(const std::shared_ptr<IScreen>& screen) {
+	void addInputHooks(const std::shared_ptr<Screen>& screen) {
 		std::shared_ptr<MouseListener> mouseListener(new MouseListener());
 		mouseListener->setClickHandler([this](MouseEvent e) {
-			for (std::shared_ptr<IWidget> child : childs) {
+			for (std::shared_ptr<Widget> child : childs) {
 				child->onMouseClick(e);
 			}
 		});
 		mouseListener->setDragHandler([this](MouseEvent e) {
-			for (std::shared_ptr<IWidget> child : childs) {
+			for (std::shared_ptr<Widget> child : childs) {
 				child->onMouseDrag(e);
 			}
 		});
 		mouseListener->setReleaseHandler([this](MouseEvent e) {
-			for (std::shared_ptr<IWidget> child : childs) {
+			for (std::shared_ptr<Widget> child : childs) {
 				child->onMouseRelease(e);
 			}
 		});
 		std::shared_ptr<KeyListener> keyListener(new KeyListener());
 		keyListener->setPressHandler([this](KeyEvent e) {
-			for (std::shared_ptr<IWidget> child : childs) {
+			for (std::shared_ptr<Widget> child : childs) {
 				child->onKeyPress(e);
 			}
 		});
 		keyListener->setReleaseHandler([this](KeyEvent e) {
-			for (std::shared_ptr<IWidget> child : childs) {
+			for (std::shared_ptr<Widget> child : childs) {
 				child->onKeyRelease(e);
 			}
 		});

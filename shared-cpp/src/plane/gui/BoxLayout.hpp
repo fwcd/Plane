@@ -13,9 +13,9 @@
 
 #include "../math/Rect2.hpp"
 #include "../math/Vec2.hpp"
-#include "IContainer.hpp"
-#include "ILayout.hpp"
-#include "IWidget.hpp"
+#include "Container.hpp"
+#include "Layout.hpp"
+#include "Widget.hpp"
 
 namespace plane {
 
@@ -28,7 +28,7 @@ enum BoxLayoutMode {
  * A basic layout manager that arranges widgets
  * along one axis.
  */
-class BoxLayout : public ILayout {
+class BoxLayout : public Layout {
 public:
 	BoxLayout(BoxLayoutMode mode) {
 		this->mode = mode;
@@ -36,13 +36,13 @@ public:
 
 	virtual ~BoxLayout() {}
 
-	virtual void add(std::shared_ptr<IWidget> widget, IContainer& container) {
-		const std::vector<std::shared_ptr<IWidget>>& others = container.getChilds();
+	virtual void add(std::shared_ptr<Widget> widget, Container& container) {
+		const std::vector<std::shared_ptr<Widget>>& others = container.getChilds();
 		float pad = widget->getPadding();
 		float x = pad;
 		float y = pad;
 
-		for (std::shared_ptr<IWidget> other : others) {
+		for (std::shared_ptr<Widget> other : others) {
 			Rect2<float> bb = other->getBoundingBox();
 
 			switch (mode) {
@@ -58,11 +58,11 @@ public:
 		container.add(widget, Vec2<float>(x, y));
 	}
 
-	virtual void relayout(IContainer& container) {
+	virtual void relayout(Container& container) {
 		float x = 0;
 		float y = 0;
-		const std::vector<std::shared_ptr<IWidget>>& widgets = container.getChilds();
-		for (std::shared_ptr<IWidget> widget : widgets) {
+		const std::vector<std::shared_ptr<Widget>>& widgets = container.getChilds();
+		for (std::shared_ptr<Widget> widget : widgets) {
 			float pad = widget->getPadding();
 			if (x == 0 && y == 0) {
 				x = pad;

@@ -13,6 +13,9 @@
 
 namespace plane {
 
+/**
+ * An event holding a key combination.
+ */
 class KeyEvent {
 public:
 	KeyEvent(Key key) {

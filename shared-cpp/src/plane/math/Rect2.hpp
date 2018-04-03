@@ -7,8 +7,8 @@
 #ifndef SRC_PLANE_MATH_RECT2_HPP_
 #define SRC_PLANE_MATH_RECT2_HPP_
 
-#include "../core/IPaintable.hpp"
-#include "../core/IScreen.hpp"
+#include "../core/Paintable.hpp"
+#include "../core/Screen.hpp"
 #include "../utils/Color.hpp"
 #include "Vec2.hpp"
 
@@ -17,7 +17,7 @@ namespace plane {
 /**
  * Mutable, two-dimensional rectangle.
  */
-template <typename T> class Rect2 : public IPaintable {
+template <typename T> class Rect2 : public Paintable {
 public:
 	Rect2() {
 		this->topLeft = Vec2<float>(0, 0);
@@ -79,7 +79,7 @@ public:
 
 	T getHeight() { return size.getY(); }
 
-	virtual void paint(IScreen& screen) {
+	virtual void paint(Screen& screen) {
 		float x = (float) topLeft.getX();
 		float y = (float) topLeft.getY();
 		float w = (float) getWidth();

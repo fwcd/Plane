@@ -13,6 +13,10 @@
 
 namespace plane {
 
+/**
+ * A keyboard listener that fires when keys are
+ * pressed or released.
+ */
 class KeyListener {
 public:
 	virtual ~KeyListener() {}

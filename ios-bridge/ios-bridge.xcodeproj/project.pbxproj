@@ -73,8 +73,8 @@
 		35AD1C06206FC3D8009E78F8 /* org.eclipse.cdt.managedbuilder.core.prefs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = org.eclipse.cdt.managedbuilder.core.prefs; sourceTree = "<group>"; };
 		35AD1C07206FC3D8009E78F8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		35AD1C0B206FC3D8009E78F8 /* FontAttributes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FontAttributes.hpp; sourceTree = "<group>"; };
-		35AD1C0C206FC3D8009E78F8 /* IPaintable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IPaintable.hpp; sourceTree = "<group>"; };
-		35AD1C0D206FC3D8009E78F8 /* IScreen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IScreen.hpp; sourceTree = "<group>"; };
+		35AD1C0C206FC3D8009E78F8 /* Paintable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Paintable.hpp; sourceTree = "<group>"; };
+		35AD1C0D206FC3D8009E78F8 /* Screen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Screen.hpp; sourceTree = "<group>"; };
 		35AD1C0E206FC3D8009E78F8 /* Key.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Key.hpp; sourceTree = "<group>"; };
 		35AD1C0F206FC3D8009E78F8 /* KeyEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyEvent.hpp; sourceTree = "<group>"; };
 		35AD1C10206FC3D8009E78F8 /* KeyListener.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyListener.hpp; sourceTree = "<group>"; };
@@ -87,11 +87,11 @@
 		35AD1C18206FC3D8009E78F8 /* BoxLayout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BoxLayout.hpp; sourceTree = "<group>"; };
 		35AD1C19206FC3D8009E78F8 /* Button.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Button.hpp; sourceTree = "<group>"; };
 		35AD1C1A206FC3D8009E78F8 /* GUI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GUI.hpp; sourceTree = "<group>"; };
-		35AD1C1B206FC3D8009E78F8 /* IBoxBounded.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IBoxBounded.hpp; sourceTree = "<group>"; };
-		35AD1C1C206FC3D8009E78F8 /* IContainer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IContainer.hpp; sourceTree = "<group>"; };
-		35AD1C1D206FC3D8009E78F8 /* ILayout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ILayout.hpp; sourceTree = "<group>"; };
+		35AD1C1B206FC3D8009E78F8 /* BoxBounded.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BoxBounded.hpp; sourceTree = "<group>"; };
+		35AD1C1C206FC3D8009E78F8 /* Container.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Container.hpp; sourceTree = "<group>"; };
+		35AD1C1D206FC3D8009E78F8 /* Layout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Layout.hpp; sourceTree = "<group>"; };
 		35AD1C1E206FC3D8009E78F8 /* ImageView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ImageView.hpp; sourceTree = "<group>"; };
-		35AD1C1F206FC3D8009E78F8 /* IWidget.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IWidget.hpp; sourceTree = "<group>"; };
+		35AD1C1F206FC3D8009E78F8 /* Widget.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Widget.hpp; sourceTree = "<group>"; };
 		35AD1C20206FC3D8009E78F8 /* Label.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Label.hpp; sourceTree = "<group>"; };
 		35AD1C22206FC3D8009E78F8 /* Rect2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Rect2.hpp; sourceTree = "<group>"; };
 		35AD1C23206FC3D8009E78F8 /* Vec2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vec2.hpp; sourceTree = "<group>"; };
@@ -237,8 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				35AD1C0B206FC3D8009E78F8 /* FontAttributes.hpp */,
-				35AD1C0C206FC3D8009E78F8 /* IPaintable.hpp */,
-				35AD1C0D206FC3D8009E78F8 /* IScreen.hpp */,
+				35AD1C0C206FC3D8009E78F8 /* Paintable.hpp */,
+				35AD1C0D206FC3D8009E78F8 /* Screen.hpp */,
 				35AD1C0E206FC3D8009E78F8 /* Key.hpp */,
 				35AD1C0F206FC3D8009E78F8 /* KeyEvent.hpp */,
 				35AD1C10206FC3D8009E78F8 /* KeyListener.hpp */,
@@ -260,11 +260,11 @@
 				35AD1C18206FC3D8009E78F8 /* BoxLayout.hpp */,
 				35AD1C19206FC3D8009E78F8 /* Button.hpp */,
 				35AD1C1A206FC3D8009E78F8 /* GUI.hpp */,
-				35AD1C1B206FC3D8009E78F8 /* IBoxBounded.hpp */,
-				35AD1C1C206FC3D8009E78F8 /* IContainer.hpp */,
-				35AD1C1D206FC3D8009E78F8 /* ILayout.hpp */,
+				35AD1C1B206FC3D8009E78F8 /* BoxBounded.hpp */,
+				35AD1C1C206FC3D8009E78F8 /* Container.hpp */,
+				35AD1C1D206FC3D8009E78F8 /* Layout.hpp */,
 				35AD1C1E206FC3D8009E78F8 /* ImageView.hpp */,
-				35AD1C1F206FC3D8009E78F8 /* IWidget.hpp */,
+				35AD1C1F206FC3D8009E78F8 /* Widget.hpp */,
 				35AD1C20206FC3D8009E78F8 /* Label.hpp */,
 			);
 			path = gui;

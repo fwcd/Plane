@@ -9,7 +9,7 @@
 #ifndef PlaneCGScreen_h
 #define PlaneCGScreen_h
 
-#import "../../shared-cpp/src/plane/core/IScreen.hpp"
+#import "../../shared-cpp/src/plane/core/Screen.hpp"
 #import "../../shared-cpp/src/plane/utils/Color.hpp"
 
 #import <vector>
@@ -17,10 +17,10 @@
 #import <UIKit/UIKit.h>
 #import "ios_bridge-Swift.h"
 
-using plane::IScreen;
+using plane::Screen;
 using plane::Color;
 using plane::FontAttributes;
-using plane::IPaintable;
+using plane::Paintable;
 using plane::KeyListener;
 using plane::MouseListener;
 using plane::MouseEvent;
@@ -31,7 +31,7 @@ using plane::Stroke;
  * The C++ screen implementation that allows Plane-based
  * applications to interface with UIKit and CoreGraphics.
  */
-class PlaneCGScreen : public IScreen {
+class PlaneCGScreen : public Screen {
 public:
     PlaneCGScreen(PlaneCGView* view);
     
@@ -69,11 +69,11 @@ public:
     
     virtual void drawLine(float startX, float startY, float endX, float endY, Stroke stroke);
     
-    virtual void addOnTop(std::shared_ptr<IPaintable> paintable);
+    virtual void addOnTop(std::shared_ptr<Paintable> paintable);
     
-    virtual void addOnBottom(std::shared_ptr<IPaintable> paintable);
+    virtual void addOnBottom(std::shared_ptr<Paintable> paintable);
     
-    virtual void remove(std::shared_ptr<IPaintable> paintable);
+    virtual void remove(std::shared_ptr<Paintable> paintable);
     
     virtual void addKeyListener(std::shared_ptr<KeyListener> keyListener);
     
@@ -92,7 +92,7 @@ public:
     virtual void onTouchUp(MouseEvent event);
 private:
     PlaneCGView* view;
-    std::vector<std::shared_ptr<IPaintable>> paintables;
+    std::vector<std::shared_ptr<Paintable>> paintables;
     std::vector<std::shared_ptr<MouseListener>> mouseListeners;
     std::vector<std::shared_ptr<KeyListener>> keyListeners;
     

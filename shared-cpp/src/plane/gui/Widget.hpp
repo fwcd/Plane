@@ -1,17 +1,17 @@
 /*
- * IWidget.hpp
+ * Widget.hpp
  *
  *  Created on: 29.03.2018
  */
 
-#ifndef SRC_PLANE_GUI_IWIDGET_HPP_
-#define SRC_PLANE_GUI_IWIDGET_HPP_
+#ifndef SRC_PLANE_GUI_WIDGET_HPP_
+#define SRC_PLANE_GUI_WIDGET_HPP_
 
 #include <memory>
 
-#include "../core/IPaintable.hpp"
+#include "../core/Paintable.hpp"
 #include "../math/Vec2.hpp"
-#include "IBoxBounded.hpp"
+#include "BoxBounded.hpp"
 #include "GUI.hpp"
 
 namespace plane {
@@ -22,9 +22,9 @@ class GUI;
  * A paintable, box-bounded item that usually provides some
  * GUI functionality (e.g. a button/a label)
  */
-class IWidget : public IPaintable, public IBoxBounded {
+class Widget : public Paintable, public BoxBounded { // Interface
 public:
-	virtual ~IWidget() {}
+	virtual ~Widget() {}
 
 	virtual void setGUI(std::shared_ptr<GUI> ptr) = 0;
 
@@ -51,4 +51,4 @@ public:
 
 }
 
-#endif /* SRC_PLANE_GUI_IWIDGET_HPP_ */
+#endif /* SRC_PLANE_GUI_WIDGET_HPP_ */

@@ -10,7 +10,11 @@
 #include "../utils/Color.hpp"
 
 namespace plane {
-	
+
+/**
+ * A set of attributes that specify how
+ * polygons are filled.
+ */
 class Fill {
 public:
 	Fill() {
@@ -27,7 +31,7 @@ public:
 private:
 	Color color;
 };
-	
+
 }
 
 #endif /* SRC_PLANE_CORE_FILL_HPP_ */

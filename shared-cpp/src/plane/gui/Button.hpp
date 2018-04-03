@@ -10,7 +10,7 @@
 #include <memory>
 #include <string>
 
-#include "../core/IScreen.hpp"
+#include "../core/Screen.hpp"
 #include "../core/MouseEvent.hpp"
 #include "../math/Rect2.hpp"
 #include "../math/Vec2.hpp"
@@ -20,16 +20,20 @@
 
 namespace plane {
 
+/**
+ * A clickable widget that displays
+ * another widget (usually a Label).
+ */
 class Button : public BaseWidget {
 public:
-	Button(std::shared_ptr<IWidget> fg) : foreground(fg) {
+	Button(std::shared_ptr<Widget> fg) : foreground(fg) {
 		float padTwice = getPadding() * 2;
 		Rect2<float> fgBB = fg->getBoundingBox();
 		getBBReference().setSize(fgBB.getWidth() + padTwice, fgBB.getHeight() + padTwice);
 	}
 
-	Button(std::string text, float size, IScreen& screen)
-			: Button(std::shared_ptr<IWidget>(new Label(text, size, COLOR_WHITE, screen))) {}
+	Button(std::string text, float size, Screen& screen)
+			: Button(std::shared_ptr<Widget>(new Label(text, size, COLOR_WHITE, screen))) {}
 
 	virtual ~Button() {}
 
@@ -41,7 +45,7 @@ public:
 		background = color;
 	}
 
-	virtual void paint(IScreen& screen) {
+	virtual void paint(Screen& screen) {
 		Rect2<float>& bb = getBBReference();
 		const Vec2<float>& tl = bb.getTopLeft();
 		float pad = getPadding();
@@ -71,7 +75,7 @@ public:
 private:
 	Color inactiveBackground = COLOR_BLACK;
 	Color activeBackground = COLOR_GRAY;
-	std::shared_ptr<IWidget> foreground;
+	std::shared_ptr<Widget> foreground;
 	Color background = inactiveBackground;
 	std::function<void()> clickTarget = [] {};
 	bool active = false;

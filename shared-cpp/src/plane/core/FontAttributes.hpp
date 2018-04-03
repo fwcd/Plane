@@ -11,6 +11,9 @@
 
 namespace plane {
 
+/**
+ * A set of attributes related to text rendering.
+ */
 class FontAttributes {
 public:
 	FontAttributes() {

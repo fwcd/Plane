@@ -15,15 +15,15 @@
 #include "../math/Vec2.hpp"
 #include "../utils/Logger.hpp"
 #include "GUI.hpp"
-#include "IWidget.hpp"
+#include "Widget.hpp"
 
 namespace plane {
 
 /**
- * A skeletal implementation of IWidget that provides basic
+ * A skeletal implementation of Widget that provides basic
  * functionality, including a bounding box and event hooks.
  */
-class BaseWidget : public IWidget {
+class BaseWidget : public Widget {
 public:
 	virtual ~BaseWidget() {}
 

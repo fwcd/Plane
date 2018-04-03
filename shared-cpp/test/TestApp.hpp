@@ -11,7 +11,7 @@
 #include <memory>
 #include <iostream>
 
-#include "../src/plane/core/IScreen.hpp"
+#include "../src/plane/core/Screen.hpp"
 #include "../src/plane/core/PlaneApp.hpp"
 #include "../src/plane/gui/Button.hpp"
 #include "../src/plane/gui/GUI.hpp"
@@ -26,7 +26,7 @@ class TestApp : public PlaneApp {
 public:
 	virtual ~TestApp() {}
 
-	virtual void initialize(std::shared_ptr<IScreen> screen) {
+	virtual void initialize(std::shared_ptr<Screen> screen) {
 		screen->setBackground(Color(60, 60, 60));
 
 		std::shared_ptr<Label> label(new Label("Label", 24, *screen));

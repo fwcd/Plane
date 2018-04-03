@@ -17,7 +17,7 @@
 namespace plane {
 
 /**
- * The superclass for all plane-related messages.
+ * The base class for all plane-related messages.
  */
 class PlaneException : public std::runtime_error {
 public:

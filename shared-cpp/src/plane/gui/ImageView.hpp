@@ -9,13 +9,16 @@
 
 #include <string>
 
-#include "../core/IScreen.hpp"
+#include "../core/Screen.hpp"
 #include "../math/Rect2.hpp"
 #include "../math/Vec2.hpp"
 #include "BaseWidget.hpp"
 
 namespace plane {
 
+/**
+ * A basic widget that displays an image.
+ */
 class ImageView : public BaseWidget {
 public:
 	ImageView(std::string imgFilePath) {
@@ -32,7 +35,7 @@ public:
 
 	virtual ~ImageView() {}
 
-	virtual void paint(IScreen& screen) {
+	virtual void paint(Screen& screen) {
 		const Vec2<float>& pos = getPos();
 		if (width < 0 || height < 0) {
 			screen.drawImage(imgFilePath, pos.getX(), pos.getY(), width, height);

@@ -4,8 +4,8 @@
  *  Created on: 28.03.2018
  */
 
-#ifndef SRC_PLANE_CORE_ISCREEN_HPP_
-#define SRC_PLANE_CORE_ISCREEN_HPP_
+#ifndef SRC_PLANE_CORE_SCREEN_HPP_
+#define SRC_PLANE_CORE_SCREEN_HPP_
 
 #include <memory>
 #include <string>
@@ -13,7 +13,7 @@
 #include "FontAttributes.hpp"
 #include "KeyListener.hpp"
 #include "MouseListener.hpp"
-#include "IPaintable.hpp"
+#include "Paintable.hpp"
 #include "../utils/Color.hpp"
 #include "Fill.hpp"
 #include "Stroke.hpp"
@@ -24,9 +24,9 @@ namespace plane {
  * The entire graphics interface that needs to be adopted platform-specifically.
  * It contains methods for rendering and event handling.
  */
-class IScreen {
+class Screen { // Interface
 public:
-	virtual ~IScreen() {}
+	virtual ~Screen() {}
 
 	virtual void repaintSoon() = 0;
 
@@ -58,11 +58,11 @@ public:
 
 	virtual void drawLine(float startX, float startY, float endX, float endY, Stroke stroke) = 0;
 
-	virtual void addOnTop(std::shared_ptr<IPaintable> paintable) = 0;
+	virtual void addOnTop(std::shared_ptr<Paintable> paintable) = 0;
 
-	virtual void addOnBottom(std::shared_ptr<IPaintable> paintable) = 0;
+	virtual void addOnBottom(std::shared_ptr<Paintable> paintable) = 0;
 
-	virtual void remove(std::shared_ptr<IPaintable> paintable) = 0;
+	virtual void remove(std::shared_ptr<Paintable> paintable) = 0;
 
 	virtual void addKeyListener(std::shared_ptr<KeyListener> keyListener) = 0;
 
@@ -75,4 +75,4 @@ public:
 
 }
 
-#endif /* SRC_PLANE_CORE_ISCREEN_HPP_ */
+#endif /* SRC_PLANE_CORE_SCREEN_HPP_ */

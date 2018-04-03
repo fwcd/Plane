@@ -12,6 +12,9 @@
 
 namespace plane {
 
+/**
+ * A single key on the keyboard.
+ */
 class Key {
 public:
 	Key() {

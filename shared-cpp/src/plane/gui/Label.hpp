@@ -11,7 +11,7 @@
 #include <string>
 
 #include "../core/FontAttributes.hpp"
-#include "../core/IScreen.hpp"
+#include "../core/Screen.hpp"
 #include "../math/Rect2.hpp"
 #include "../math/Vec2.hpp"
 #include "../utils/Color.hpp"
@@ -19,9 +19,12 @@
 
 namespace plane {
 
+/**
+ * A basic widget that displays text.
+ */
 class Label : public BaseWidget {
 public:
-	Label(std::string text, float size, IScreen& screen) {
+	Label(std::string text, float size, Screen& screen) {
 		this->text = text;
 		attribs = FontAttributes(size);
 		int w = screen.getStringWidth(text, attribs);
@@ -29,7 +32,7 @@ public:
 		getBBReference() = Rect2<float>(0, 0, w, h);
 	}
 
-	Label(std::string text, float size, Color color, IScreen& screen) : Label(text, size, screen) {
+	Label(std::string text, float size, Color color, Screen& screen) : Label(text, size, screen) {
 		setColor(color);
 	}
 
@@ -39,7 +42,7 @@ public:
 		attribs.setColor(color);
 	}
 
-	virtual void paint(IScreen& screen) {
+	virtual void paint(Screen& screen) {
 		const Vec2<float>& pos = getPos();
 		screen.drawString(text, pos.getX(), pos.getY(), attribs);
 	}

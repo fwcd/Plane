@@ -9,6 +9,10 @@
 
 namespace plane {
 
+/**
+ * A key that can not be described
+ * using a character.
+ */
 enum SpecialKey {
 	NO_KEY,
 	CTRL_KEY,

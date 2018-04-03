@@ -25,7 +25,11 @@
 
 namespace plane {
 
-class Logger { // A lightweight logging abstraction
+/**
+ * A lightweight logging abstraction
+ * that supports different levels.
+ */
+class Logger {
 public:
 	Logger() {}
 

@@ -9,6 +9,10 @@
 
 namespace plane {
 
+/**
+ * An input method in the most general sense
+ * (e.g. a mouse button/a touch).
+ */
 enum MouseButton {
 	MOUSE_LEFT, MOUSE_MIDDLE, MOUSE_RIGHT, TOUCH, MOUSE_INVALID
 };

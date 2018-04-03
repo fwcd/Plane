@@ -13,7 +13,7 @@
 
 PlaneCGScreen::PlaneCGScreen(PlaneCGView* view) {
     this->view = view;
-	paintables = std::vector<std::shared_ptr<IPaintable>>();
+	paintables = std::vector<std::shared_ptr<Paintable>>();
 	mouseListeners = std::vector<std::shared_ptr<MouseListener>>();
 	keyListeners = std::vector<std::shared_ptr<KeyListener>>();
 }
@@ -161,15 +161,15 @@ void PlaneCGScreen::drawLine(float startX, float startY, float endX, float endY,
 					   withColor:toUIColor(stroke.getColor())]];
 }
 
-void PlaneCGScreen::addOnTop(std::shared_ptr<IPaintable> paintable) {
+void PlaneCGScreen::addOnTop(std::shared_ptr<Paintable> paintable) {
 	paintables.push_back(paintable);
 }
 
-void PlaneCGScreen::addOnBottom(std::shared_ptr<IPaintable> paintable) {
+void PlaneCGScreen::addOnBottom(std::shared_ptr<Paintable> paintable) {
 	paintables.insert(paintables.begin(), paintable);
 }
 
-void PlaneCGScreen::remove(std::shared_ptr<IPaintable> paintable) {
+void PlaneCGScreen::remove(std::shared_ptr<Paintable> paintable) {
 	paintables.erase(std::remove(paintables.begin(), paintables.end(), paintable), paintables.end());
 }
 
@@ -190,7 +190,7 @@ void PlaneCGScreen::removeMouseListener(std::shared_ptr<MouseListener> mouseList
 }
 
 void PlaneCGScreen::onRender() {
-	for (std::shared_ptr<IPaintable> paintable : paintables) {
+	for (std::shared_ptr<Paintable> paintable : paintables) {
 		paintable->paint(*this);
 	}
 }

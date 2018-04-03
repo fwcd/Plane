@@ -10,7 +10,11 @@
 #include "../utils/Color.hpp"
 
 namespace plane {
-	
+
+/**
+ * A set of attributes that specify how
+ * strokes (e.g. lines) are painted.
+ */
 class Stroke {
 public:
 	Stroke() {
@@ -37,7 +41,7 @@ private:
 	float width;
 	Color color;
 };
-	
+
 }
 
 #endif /* SRC_PLANE_CORE_STROKE_HPP_ */
