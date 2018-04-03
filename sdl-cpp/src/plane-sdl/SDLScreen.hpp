@@ -8,8 +8,8 @@
 #define SRC_PLANE_SDL_SDLSCREEN_HPP_
 
 #include <plane/core/FontAttributes.hpp>
-#include <plane/core/IPaintable.hpp>
-#include <plane/core/IScreen.hpp>
+#include <plane/core/Paintable.hpp>
+#include <plane/core/Screen.hpp>
 #include <plane/core/KeyListener.hpp>
 #include <plane/core/MouseButton.hpp>
 #include <plane/core/MouseEvent.hpp>
@@ -43,7 +43,7 @@ using std::shared_ptr;
 
 namespace plane {
 
-class SDLScreen : public IScreen {
+class SDLScreen : public Screen {
 public:
 	SDLScreen(std::string title, int width, int height) {
 		if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -94,21 +94,25 @@ public:
 		needsRepaint = true;
 	}
 
-	virtual void drawRect(float x, float y, float w, float h) {
+	virtual void drawRect(float x, float y, float w, float h, Stroke stroke) {
+		setColor(stroke.getColor());
 		SDL_Rect rect = {(int) x, (int) y, (int) w, (int) h};
 		SDL_RenderDrawRect(renderer, &rect);
 	}
 
-	virtual void fillRect(float x, float y, float w, float h) {
+	virtual void fillRect(float x, float y, float w, float h, Fill fill) {
+		setColor(fill.getColor());
 		SDL_Rect rect = {(int) x, (int) y, (int) w, (int) h};
 		SDL_RenderFillRect(renderer, &rect);
 	}
 
-	virtual void drawOval(float x, float y, float w, float h) {
+	virtual void drawOval(float x, float y, float w, float h, Stroke stroke) {
+		setColor(stroke.getColor());
 		// TODO
 	}
 
-	virtual void fillOval(float x, float y, float w, float h) {
+	virtual void fillOval(float x, float y, float w, float h, Fill fill) {
+		setColor(fill.getColor());
 		// TODO
 	}
 
@@ -147,7 +151,8 @@ public:
 		TTF_CloseFont(font);
 	}
 
-	virtual void drawLine(float startX, float startY, float endX, float endY) {
+	virtual void drawLine(float startX, float startY, float endX, float endY, Stroke stroke) {
+		setColor(stroke.getColor());
 		// TODO
 	}
 
@@ -167,28 +172,15 @@ public:
 		mouseListeners.erase(std::remove(mouseListeners.begin(), mouseListeners.end(), mouseListener), mouseListeners.end());
 	}
 
-	virtual void setColor(Color color) {
-		SDL_SetRenderDrawColor(renderer, color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
-	}
-
-	virtual Color getColor() {
-		uint8_t r = 0;
-		uint8_t g = 0;
-		uint8_t b = 0;
-		uint8_t a = 0;
-		SDL_GetRenderDrawColor(renderer, &r, &g, &b, &a);
-		return Color(r, g, b, a);
-	}
-
-	virtual void addOnTop(shared_ptr<IPaintable> paintable) {
+	virtual void addOnTop(shared_ptr<Paintable> paintable) {
 		paintables.push_back(paintable);
 	}
 
-	virtual void addOnBottom(shared_ptr<IPaintable> paintable) {
+	virtual void addOnBottom(shared_ptr<Paintable> paintable) {
 		paintables.insert(paintables.begin(), paintable);
 	}
 
-	virtual void remove(shared_ptr<IPaintable> paintable) {
+	virtual void remove(shared_ptr<Paintable> paintable) {
 		paintables.erase(std::remove(paintables.begin(), paintables.end(), paintable), paintables.end());
 	}
 
@@ -236,7 +228,7 @@ public:
 				setColor(background);
 				SDL_RenderClear(renderer);
 
-				for (shared_ptr<IPaintable> paintable : paintables) {
+				for (shared_ptr<Paintable> paintable : paintables) {
 					paintable->paint(*this);
 				}
 
@@ -254,7 +246,7 @@ private:
 	SDL_Renderer* renderer;
 	vector<shared_ptr<MouseListener>> mouseListeners = vector<shared_ptr<MouseListener>>();
 	vector<shared_ptr<KeyListener>> keyListeners = vector<shared_ptr<KeyListener>>();
-	vector<shared_ptr<IPaintable>> paintables = vector<shared_ptr<IPaintable>>();
+	vector<shared_ptr<Paintable>> paintables = vector<shared_ptr<Paintable>>();
 	bool closed = false;
 	bool mouseDown = false;
 	bool needsRepaint = true;
@@ -263,6 +255,19 @@ private:
 	float lastMouseX = -1;
 	float lastMouseY = -1;
 	Color background = COLOR_BLACK;
+
+	void setColor(Color color) {
+		SDL_SetRenderDrawColor(renderer, color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
+	}
+
+	Color getColor() {
+		uint8_t r = 0;
+		uint8_t g = 0;
+		uint8_t b = 0;
+		uint8_t a = 0;
+		SDL_GetRenderDrawColor(renderer, &r, &g, &b, &a);
+		return Color(r, g, b, a);
+	}
 
 	void drawImageImpl(std::string filePath, float x, float y, float& w, float& h) {
 		initSDLImage(filePath);
