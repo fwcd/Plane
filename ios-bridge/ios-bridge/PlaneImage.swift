@@ -15,21 +15,13 @@ public class PlaneImage : NSObject {
 	public let bounds: CGRect
 	
 	@objc
-	public init(path: String, source: CGDataProvider, x: Float, y: Float, w: Float, h: Float, shouldInterpolate: Bool) {
-		pLogDebug("Loading image from " + path)
-		let intent = CGColorRenderingIntent.defaultIntent
-		let optionalImg: CGImage?
-		
-		if (path.hasSuffix("png")) {
-			optionalImg = CGImage(pngDataProviderSource: source, decode: nil, shouldInterpolate: shouldInterpolate, intent: intent)
-		} else if (path.hasSuffix("jpg") || path.hasSuffix("jpeg")) {
-			optionalImg = CGImage(jpegDataProviderSource: source, decode: nil, shouldInterpolate: shouldInterpolate, intent: intent)
-		} else {
-			optionalImg = nil
+	public init(image: CGImage?, x: Float, y: Float, w: Float, h: Float, shouldInterpolate: Bool) {
+		if (image == nil) {
+			// TODO: Generate a proper error message here if the image could not be loaded
+			PlaneLog.error("Image source is nil while loading")
 		}
 		
-		// TODO: Generate a proper error message here if the image could not be loaded
-		img = optionalImg!
+		img = image!
 		
 		bounds = CGRect(x: CGFloat(x), y: CGFloat(y), width: (w < 0 ? CGFloat(img.width) : CGFloat(w)), height: (h < 0 ? CGFloat(img.height) : CGFloat(h)))
 	}

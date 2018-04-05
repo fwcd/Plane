@@ -5,8 +5,9 @@ It abstracts the entire graphics API and makes code built upon it fully compatib
 
 ## Folder structure
 * shared-cpp | contains the cross-platform C++ API of this library
-* sdl-cpp | contains a reference implementation using SDL
-* java-bridge | contains a reference implementation using JNI/Swing
+* sdl-cpp | contains an implementation using SDL
+* java-bridge | contains an implementation using JNI/Swing
+* ios-bridge | contains an implementation using UIKit and CoreGraphics
 
 ## Setup using Eclipse
 If you plan to develop using Eclipse open up this repository as a workspace.

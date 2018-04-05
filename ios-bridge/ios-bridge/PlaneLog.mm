@@ -2,47 +2,49 @@
 //  PlaneLog.mm
 //  ios-bridge
 //
-//  Created by Fredrik on 03.04.18.
+//  Created by Fredrik on 04.04.18.
 //  Copyright © 2018 fwcd. All rights reserved.
 //
+
+#import <Foundation/Foundation.h>
 
 #import "PlaneLog.h"
 #import "../../shared-cpp/src/plane/utils/Logger.hpp"
 
-#import <string>
+const plane::Logger logger = plane::Logger();
 
-const plane::Logger planeLogger = plane::Logger();
-
-// TODO: Fix Linker error with this logger
-
-const char* toCStr(NSString* msg) {
-	return [msg cStringUsingEncoding:NSUTF8StringEncoding];
+const char* cStrOf(NSString* str) {
+	return [str cStringUsingEncoding:NSUTF8StringEncoding];
 }
 
-void pLogError(NSString* msg) {
-	planeLogger.error(toCStr(msg));
+@implementation PlaneLog
+
++ (void) error:(NSString*)msg {
+	logger.error(cStrOf(msg));
 }
 
-void pLogWarn(NSString* msg) {
-	planeLogger.warn(toCStr(msg));
++ (void) warn:(NSString*)msg {
+	logger.warn(cStrOf(msg));
 }
 
-void pLogInfo(NSString* msg) {
-	planeLogger.info(toCStr(msg));
++ (void) info:(NSString*)msg {
+	logger.info(cStrOf(msg));
 }
 
-void pLogDebug(NSString* msg) {
-	planeLogger.debug(toCStr(msg));
++ (void) debug:(NSString*)msg {
+	logger.debug(cStrOf(msg));
 }
 
-void pLogTrace(NSString* msg) {
-	planeLogger.trace(toCStr(msg));
++ (void) trace:(NSString*)msg {
+	logger.trace(cStrOf(msg));
 }
 
-void pLogDeepTrace(NSString* msg) {
-	planeLogger.deepTrace(toCStr(msg));
++ (void) deepTrace:(NSString*)msg {
+	logger.deepTrace(cStrOf(msg));
 }
 
-void pLogVeryDeepTrace(NSString* msg) {
-	planeLogger.veryDeepTrace(toCStr(msg));
++ (void) veryDeepTrace:(NSString*)msg {
+	logger.veryDeepTrace(cStrOf(msg));
 }
+
+@end

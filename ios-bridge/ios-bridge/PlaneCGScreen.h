@@ -15,6 +15,7 @@
 #import <vector>
 
 #import <UIKit/UIKit.h>
+#import <CoreFoundation/CFString.h>
 #import "ios_bridge-Swift.h"
 
 using plane::Screen;
