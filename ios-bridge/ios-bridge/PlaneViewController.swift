@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlaneViewController : UIViewController {
+class PlaneViewController: UIViewController {
 	private var app: PlaneAppHolder?
 	override var prefersStatusBarHidden: Bool {
 		// TODO: This value is probably queried before app is intialized

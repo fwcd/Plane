@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 @objc
-public class PlaneImage : NSObject {
+public class PlaneImage: NSObject {
 	public let img: CGImage
 	public let bounds: CGRect
 	

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 @objc
-public class PlaneString : NSObject {
+public class PlaneString: NSObject {
 	public let x: Float
 	public let y: Float
 	public let value: String

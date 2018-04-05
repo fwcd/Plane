@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 @objc
-public class PlaneLine : NSObject {
+public class PlaneLine: NSObject {
 	public let start: CGPoint
 	public let end: CGPoint
 	public let color: UIColor

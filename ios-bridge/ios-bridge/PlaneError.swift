@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct PlaneError : Error {
+struct PlaneError: Error {
 	let msg: String
 }

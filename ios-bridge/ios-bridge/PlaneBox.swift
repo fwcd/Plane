@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 @objc
-public class PlaneBox : NSObject {
+public class PlaneBox: NSObject {
 	public let x: Float
 	public let y: Float
 	public let w: Float

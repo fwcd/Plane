@@ -16,7 +16,7 @@ import CoreText
  * tasks.
  */
 @objc
-public class PlaneCGView : UIView {
+public class PlaneCGView: UIView {
     private var rectPaintQueue = Queue<PlaneBox>()
     private var ovalPaintQueue = Queue<PlaneBox>()
 	private var linePaintQueue = Queue<PlaneLine>()
