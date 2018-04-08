@@ -42,7 +42,7 @@ public class PlaneCGView: UIView {
 			} else {
 				ctx.setStrokeColor(rect.color.cgColor)
 				ctx.addRect(rect.toCGRect())
-				
+				ctx.strokePath()
 			}
         }
         
@@ -55,6 +55,7 @@ public class PlaneCGView: UIView {
 			} else {
 				ctx.setStrokeColor(oval.color.cgColor)
 				ctx.addEllipse(in: oval.toCGRect())
+				ctx.strokePath()
 			}
         }
 		
@@ -64,6 +65,7 @@ public class PlaneCGView: UIView {
 			ctx.setStrokeColor(line.color.cgColor)
 			ctx.move(to: line.start)
 			ctx.addLine(to: line.end)
+			ctx.strokePath()
 		}
 		
 		while !stringPaintQueue.isEmpty {
