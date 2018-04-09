@@ -9,16 +9,13 @@
 #define TEST_TESTAPP_HPP_
 
 #include <memory>
-#include <iostream>
-
-#include "../src/plane/core/Screen.hpp"
-#include "../src/plane/core/PlaneApp.hpp"
-#include "../src/plane/gui/Button.hpp"
-#include "../src/plane/gui/GUI.hpp"
-#include "../src/plane/gui/ImageView.hpp"
-#include "../src/plane/gui/Label.hpp"
-#include "../src/plane/utils/Color.hpp"
-#include "../src/plane/utils/Logger.hpp"
+#include <plane/utils/Color.hpp>
+#include <plane/core/Screen.hpp>
+#include <plane/core/PlaneApp.hpp>
+#include <plane/gui/GUI.hpp>
+#include <plane/gui/Label.hpp>
+#include <plane/gui/ImageView.hpp>
+#include <plane/gui/Button.hpp>
 
 namespace plane {
 

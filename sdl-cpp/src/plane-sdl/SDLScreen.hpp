@@ -7,15 +7,18 @@
 #ifndef SRC_PLANE_SDL_SDLSCREEN_HPP_
 #define SRC_PLANE_SDL_SDLSCREEN_HPP_
 
+#include <plane/core/Fill.hpp>
 #include <plane/core/FontAttributes.hpp>
-#include <plane/core/Paintable.hpp>
-#include <plane/core/Screen.hpp>
 #include <plane/core/KeyListener.hpp>
 #include <plane/core/MouseButton.hpp>
 #include <plane/core/MouseEvent.hpp>
 #include <plane/core/MouseListener.hpp>
+#include <plane/core/Paintable.hpp>
+#include <plane/core/Screen.hpp>
+#include <plane/core/Stroke.hpp>
 #include <plane/utils/Color.hpp>
 #include <plane/utils/Utilities.hpp>
+#include <plane/utils/Logger.hpp>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_image.h>
@@ -34,7 +37,6 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include <iostream>
 
 #include "SDLException.hpp"
 
@@ -133,6 +135,7 @@ public:
 	}
 
 	virtual void drawString(std::string str, float x, float y, FontAttributes attribs) {
+		setColor(attribs.getColor());
 		TTF_Font* font = openTTFFont(attribs);
 		if (font == nullptr) {
 			throw SDLException("Font not found.");
@@ -240,6 +243,10 @@ public:
 			SDL_Delay(intervalMs);
 		}
 	}
+
+	void setAppFolderPath(std::string folderPath) {
+		appFolderPath = folderPath;
+	}
 private:
 	SDL_Window* window;
 	SDL_Surface* screenSurface;
@@ -255,6 +262,7 @@ private:
 	float lastMouseX = -1;
 	float lastMouseY = -1;
 	Color background = COLOR_BLACK;
+	std::string appFolderPath = "";
 
 	void setColor(Color color) {
 		SDL_SetRenderDrawColor(renderer, color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
@@ -270,8 +278,9 @@ private:
 	}
 
 	void drawImageImpl(std::string filePath, float x, float y, float& w, float& h) {
-		initSDLImage(filePath);
-		SDL_Surface* imgSurface = imgToSurface(filePath);
+		std::string path = appFolderPath + filePath;
+		initSDLImage(path);
+		SDL_Surface* imgSurface = imgToSurface(path);
 		SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, imgSurface);
 		if (w < 0) {
 			w = imgSurface->w;

@@ -32,6 +32,8 @@ public:
 		this->special = special;
 	}
 
+	virtual ~Key() {}
+
 	char asChar() {
 		if (!hasChar()) {
 			throw PlaneException("Tried to fetch non-existent key character.");
@@ -53,8 +55,6 @@ public:
 	bool hasChar() { return keyChar != 0; }
 
 	bool isSpecial() { return special != NO_KEY; }
-
-	virtual ~Key() {}
 private:
 	char keyChar;
 	SpecialKey special;
