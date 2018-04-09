@@ -11,8 +11,8 @@
 // named uniquely throughout the entire project.
 //
 
-#define APP_CLASS_FOLDER "../../shared-cpp/test/"
-#define APP_CLASS_IMPORT "../../shared-cpp/test/TestApp.hpp"
+#define APP_CLASS_FOLDER "../../test/"
+#define APP_CLASS_IMPORT "../../test/TestApp.hpp"
 #define APP_CLASS_NAME plane::TestApp
 
 #endif /* APP_INFO_h */

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		353BFBCE20755F9800AB20FD /* PlaneLog.mm in Sources */ = {isa = PBXBuildFile; fileRef = 353BFBCD20755F9800AB20FD /* PlaneLog.mm */; };
-		353BFBD12075626C00AB20FD /* demo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 353BFBD02075626C00AB20FD /* demo.jpg */; };
 		359564F0207284FD0091FFF9 /* PlaneLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359564EF207284FD0091FFF9 /* PlaneLine.swift */; };
 		359564F2207286FF0091FFF9 /* PlaneBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359564F1207286FF0091FFF9 /* PlaneBox.swift */; };
 		359564F4207289040091FFF9 /* PlaneString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359564F3207289040091FFF9 /* PlaneString.swift */; };
@@ -27,6 +26,10 @@
 		35AD1C2F206FC3D9009E78F8 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 35AD1C07206FC3D8009E78F8 /* README.md */; };
 		35AD1C54206FC829009E78F8 /* PlaneCGScreen.h in Sources */ = {isa = PBXBuildFile; fileRef = 35AD1C53206FC829009E78F8 /* PlaneCGScreen.h */; };
 		35AD1C56206FD4C3009E78F8 /* PlaneCGScreen.mm in Sources */ = {isa = PBXBuildFile; fileRef = 35AD1C55206FD4C3009E78F8 /* PlaneCGScreen.mm */; };
+		35BD2A31207BEEC800A5E9B0 /* .cproject in Resources */ = {isa = PBXBuildFile; fileRef = 35BD2A2A207BEEC800A5E9B0 /* .cproject */; };
+		35BD2A32207BEEC800A5E9B0 /* .project in Resources */ = {isa = PBXBuildFile; fileRef = 35BD2A2B207BEEC800A5E9B0 /* .project */; };
+		35BD2A33207BEEC800A5E9B0 /* language.settings.xml in Resources */ = {isa = PBXBuildFile; fileRef = 35BD2A2D207BEEC800A5E9B0 /* language.settings.xml */; };
+		35BD2A34207BEEC800A5E9B0 /* demo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35BD2A2F207BEEC800A5E9B0 /* demo.jpg */; };
 		35DB62452071311500747DE0 /* PlaneAppHolder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 35DB62442071311500747DE0 /* PlaneAppHolder.mm */; };
 		35DB624C20713CE200747DE0 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DB624B20713CE200747DE0 /* Queue.swift */; };
 		35DB62512071447A00747DE0 /* PlaneCGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DB62502071447A00747DE0 /* PlaneCGView.swift */; };
@@ -52,7 +55,6 @@
 /* Begin PBXFileReference section */
 		353BFBCC20755ED800AB20FD /* PlaneLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneLog.h; sourceTree = "<group>"; };
 		353BFBCD20755F9800AB20FD /* PlaneLog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlaneLog.mm; sourceTree = "<group>"; };
-		353BFBD02075626C00AB20FD /* demo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo.jpg; sourceTree = "<group>"; };
 		359564EB20724D760091FFF9 /* ios-bridge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios-bridge-Bridging-Header.h"; sourceTree = "<group>"; };
 		359564EC207275E60091FFF9 /* APP-INFO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "APP-INFO.h"; sourceTree = "<group>"; };
 		359564EF207284FD0091FFF9 /* PlaneLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaneLine.swift; sourceTree = "<group>"; };
@@ -104,9 +106,13 @@
 		35AD1C26206FC3D8009E78F8 /* Logger.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
 		35AD1C27206FC3D8009E78F8 /* PlaneException.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlaneException.hpp; sourceTree = "<group>"; };
 		35AD1C28206FC3D8009E78F8 /* Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utilities.hpp; sourceTree = "<group>"; };
-		35AD1C2A206FC3D8009E78F8 /* TestApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TestApp.hpp; sourceTree = "<group>"; };
 		35AD1C53206FC829009E78F8 /* PlaneCGScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaneCGScreen.h; sourceTree = "<group>"; usesTabs = 0; };
 		35AD1C55206FD4C3009E78F8 /* PlaneCGScreen.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlaneCGScreen.mm; sourceTree = "<group>"; wrapsLines = 1; };
+		35BD2A2A207BEEC800A5E9B0 /* .cproject */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = .cproject; sourceTree = "<group>"; };
+		35BD2A2B207BEEC800A5E9B0 /* .project */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = .project; sourceTree = "<group>"; };
+		35BD2A2D207BEEC800A5E9B0 /* language.settings.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = language.settings.xml; sourceTree = "<group>"; };
+		35BD2A2F207BEEC800A5E9B0 /* demo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = demo.jpg; sourceTree = "<group>"; };
+		35BD2A30207BEEC800A5E9B0 /* TestApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TestApp.hpp; sourceTree = "<group>"; };
 		35DB6243207130E700747DE0 /* PlaneAppHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneAppHolder.h; sourceTree = "<group>"; };
 		35DB62442071311500747DE0 /* PlaneAppHolder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlaneAppHolder.mm; sourceTree = "<group>"; };
 		35DB624B20713CE200747DE0 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
@@ -140,14 +146,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		353BFBCF2075626C00AB20FD /* resources */ = {
-			isa = PBXGroup;
-			children = (
-				353BFBD02075626C00AB20FD /* demo.jpg */,
-			);
-			path = resources;
-			sourceTree = "<group>";
-		};
 		359564ED207279B00091FFF9 /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +162,7 @@
 		35AD1B98206FB50D009E78F8 = {
 			isa = PBXGroup;
 			children = (
+				35BD2A29207BEEC800A5E9B0 /* test */,
 				35AD1C01206FC3D8009E78F8 /* shared-cpp */,
 				35AD1BA3206FB50D009E78F8 /* ios-bridge */,
 				35AD1BA2206FB50D009E78F8 /* Products */,
@@ -214,7 +213,6 @@
 				35AD1C04206FC3D8009E78F8 /* .settings */,
 				35AD1C07206FC3D8009E78F8 /* README.md */,
 				35AD1C08206FC3D8009E78F8 /* src */,
-				35AD1C29206FC3D8009E78F8 /* test */,
 			);
 			name = "shared-cpp";
 			path = "../shared-cpp";
@@ -305,13 +303,33 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
-		35AD1C29206FC3D8009E78F8 /* test */ = {
+		35BD2A29207BEEC800A5E9B0 /* test */ = {
 			isa = PBXGroup;
 			children = (
-				353BFBCF2075626C00AB20FD /* resources */,
-				35AD1C2A206FC3D8009E78F8 /* TestApp.hpp */,
+				35BD2A2A207BEEC800A5E9B0 /* .cproject */,
+				35BD2A2B207BEEC800A5E9B0 /* .project */,
+				35BD2A2C207BEEC800A5E9B0 /* .settings */,
+				35BD2A2E207BEEC800A5E9B0 /* resources */,
+				35BD2A30207BEEC800A5E9B0 /* TestApp.hpp */,
 			);
-			path = test;
+			name = test;
+			path = ../test;
+			sourceTree = "<group>";
+		};
+		35BD2A2C207BEEC800A5E9B0 /* .settings */ = {
+			isa = PBXGroup;
+			children = (
+				35BD2A2D207BEEC800A5E9B0 /* language.settings.xml */,
+			);
+			path = .settings;
+			sourceTree = "<group>";
+		};
+		35BD2A2E207BEEC800A5E9B0 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				35BD2A2F207BEEC800A5E9B0 /* demo.jpg */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,7 +400,7 @@
 				TargetAttributes = {
 					35AD1BA0206FB50D009E78F8 = {
 						CreatedOnToolsVersion = 8.3.2;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 					35AD1BB4206FB50D009E78F8 = {
@@ -423,12 +441,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				35AD1BAF206FB50D009E78F8 /* LaunchScreen.storyboard in Resources */,
+				35BD2A31207BEEC800A5E9B0 /* .cproject in Resources */,
 				35AD1C2C206FC3D9009E78F8 /* .project in Resources */,
+				35BD2A33207BEEC800A5E9B0 /* language.settings.xml in Resources */,
 				35AD1C2E206FC3D9009E78F8 /* org.eclipse.cdt.managedbuilder.core.prefs in Resources */,
 				35AD1C2B206FC3D8009E78F8 /* .cproject in Resources */,
-				353BFBD12075626C00AB20FD /* demo.jpg in Resources */,
+				35BD2A32207BEEC800A5E9B0 /* .project in Resources */,
 				35AD1BAC206FB50D009E78F8 /* Assets.xcassets in Resources */,
 				35AD1BAA206FB50D009E78F8 /* Main.storyboard in Resources */,
+				35BD2A34207BEEC800A5E9B0 /* demo.jpg in Resources */,
 				35AD1C2D206FC3D9009E78F8 /* language.settings.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -562,6 +583,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$SRCROOT/../shared-cpp/src";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -606,6 +628,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$SRCROOT/../shared-cpp/src";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -627,7 +650,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ios-bridge/ios-bridge-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -643,7 +667,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fwcd.ios-bridge";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ios-bridge/ios-bridge-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

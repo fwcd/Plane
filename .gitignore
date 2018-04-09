@@ -5,3 +5,4 @@ bin/
 .recommenders/
 .DS_Store
 xcuserdata/
+*.xcuserdata

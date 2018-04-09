@@ -9,6 +9,8 @@
 #define TEST_TESTAPP_HPP_
 
 #include <memory>
+
+// Include plane sources
 #include <plane/utils/Color.hpp>
 #include <plane/core/Screen.hpp>
 #include <plane/core/PlaneApp.hpp>

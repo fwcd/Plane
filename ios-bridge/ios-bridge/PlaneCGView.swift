@@ -71,7 +71,7 @@ public class PlaneCGView: UIView {
 		while !stringPaintQueue.isEmpty {
 			let str: PlaneString = stringPaintQueue.poll()
 			let font = UIFont.systemFont(ofSize: CGFloat(str.size))
-			let attributes = [NSForegroundColorAttributeName:str.color, NSFontAttributeName:font]
+			let attributes = [NSAttributedStringKey.foregroundColor:str.color, NSAttributedStringKey.font:font]
 			let attributedStr = NSAttributedString(string: str.value, attributes: attributes)
 			let path = CGMutablePath()
 			path.addRect(CGRect(x: CGFloat(str.x), y: -bounds.height + CGFloat(str.y) + (font.lineHeight * 1.5), width: bounds.width, height: bounds.height))
