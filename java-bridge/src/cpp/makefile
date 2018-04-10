@@ -12,6 +12,7 @@ JAVA_PATH = C:/Program Files/Java/jdk1.8.0_144
 JAVA_INCLUDES = $(JAVA_PATH)/include
 JAVA_NATIVE_INCLUDES = $(JAVA_INCLUDES)/win32
 SOURCE_FILE_SUFFIX = .cpp
+DELETE_COMMAND = del
 
 # Define a virtual path for .class in the bin directory
 vpath %.class $(CLASS_PATH)
@@ -54,8 +55,8 @@ com_fwcd_plane_core_NativePlaneApp.h:
 # ==== Clean ====
 
 clean:
-	del com_fwcd_plane_core_NativePaintable.h
-	del com_fwcd_plane_core_NativeKeyListener.h
-	del com_fwcd_plane_core_NativeMouseListener.h
-	del com_fwcd_plane_core_NativePlaneApp.h
-	del plane.dll
+	$(DELETE_COMMAND) com_fwcd_plane_core_NativePaintable.h
+	$(DELETE_COMMAND) com_fwcd_plane_core_NativeKeyListener.h
+	$(DELETE_COMMAND) com_fwcd_plane_core_NativeMouseListener.h
+	$(DELETE_COMMAND) com_fwcd_plane_core_NativePlaneApp.h
+	$(DELETE_COMMAND) plane.dll
