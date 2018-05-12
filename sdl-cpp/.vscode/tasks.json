@@ -4,7 +4,11 @@
 		{
 			"label": "test-build-win",
 			"type": "shell",
-			"command": "make build/sdl-cpp-test.exe"
+			"command": "make build/sdl-cpp-test.exe",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
 		}
 	]
 }
